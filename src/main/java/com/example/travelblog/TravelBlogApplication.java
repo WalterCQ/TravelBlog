@@ -18,7 +18,7 @@ public class TravelBlogApplication {
 
     public static void main(String[] args) {
         log.info("==========================================");
-        log.info("    MyTour Travel Blog Application v2.0");
+        log.info("    MyTour Travel Blog Application v2.1");
         log.info("    Modern Architecture - 2025");
         log.info("    Starting up...");
         log.info("==========================================");

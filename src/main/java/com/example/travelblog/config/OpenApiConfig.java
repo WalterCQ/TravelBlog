@@ -38,7 +38,7 @@ public class OpenApiConfig {
 
         Info info = new Info()
             .title("MyTour Travel Blog API")
-            .version("2.0.0")
+            .version("2.1.0")
             .contact(contact)
             .description("Modern Travel Blog Application API with comprehensive travel package management")
             .termsOfService("https://travelblog.com/terms")

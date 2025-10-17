@@ -130,7 +130,7 @@ EXIT;
 
 **方法1：使用SCP上传（在你的本地电脑执行）**
 ```bash
-scp C:\Users\12285\Documents\TravelBlog2.0\database-init.sql root@你的公网IP:/tmp/
+scp C:\Users\12285\Documents\TravelBlog2.1\database-init.sql root@你的公网IP:/tmp/
 ```
 
 **方法2：使用文件管理工具**
@@ -177,7 +177,7 @@ sudo chmod 755 /opt/travelblog
 **在你的本地电脑上，先构建项目：**
 ```bash
 # 在项目目录下执行
-cd C:\Users\12285\Documents\TravelBlog2.0
+cd C:\Users\12285\Documents\TravelBlog2.1
 mvn clean package -Pprod -DskipTests
 ```
 

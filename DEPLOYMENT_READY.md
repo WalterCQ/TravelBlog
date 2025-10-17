@@ -159,6 +159,6 @@ VALUES ('admin', '$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iAt6Z5EH',
 
 恭喜！你的TravelBlog应用已经准备就绪，可以开始部署了！
 
-**部署包位置**: `C:\Users\12285\Documents\TravelBlog2.0\deployment\`
+**部署包位置**: `C:\Users\12285\Documents\TravelBlog2.1\deployment\`
 
 **下一步**: 选择部署方案，按照步骤进行部署。

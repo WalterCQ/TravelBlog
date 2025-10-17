@@ -7,7 +7,7 @@ class TravelBlogApp {
     constructor() {
         this.config = {
             apiBaseUrl: '/api/v1',
-            version: '2.0.0',
+            version: '2.1.0',
             debug: true
         };
         this.modules = new Map();
