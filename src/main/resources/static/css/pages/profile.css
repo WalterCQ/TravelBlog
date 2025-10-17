@@ -1,0 +1,1124 @@
+/* ============================================
+   MyTour Global - Profile Page Styles (2025)
+   Ocean & Sunset Theme - Modern Professional Design
+   ============================================ */
+
+/* ============================================
+   CSS Variables - Ocean & Sunset Theme + Liquid Glass
+   ============================================ */
+:root {
+    /* Ocean Blue Gradients */
+    --ocean-primary: #1e3c72;
+    --ocean-secondary: #2a5298;
+    --ocean-light: #4a90e2;
+    --ocean-lighter: #7ab5ff;
+    
+    /* Sunset Gradients */
+    --sunset-orange: #f64f59;
+    --sunset-pink: #ff6b6b;
+    --sunset-yellow: #feca57;
+    --sunset-gold: #ffd700;
+    
+    /* Neutral Colors */
+    --white: #ffffff;
+    --light-bg: #f8f9fa;
+    --light-gray: #e9ecef;
+    --medium-gray: #6c757d;
+    --dark-gray: #343a40;
+    
+    /* Status Colors */
+    --success-primary: #28a745;
+    --success-secondary: #20c997;
+    --warning-primary: #ff9800;
+    --danger-primary: #dc3545;
+    --info-primary: #17a2b8;
+    
+    /* ===== Liquid Glass System (2025) ===== */
+    /* Blur Intensity */
+    --glass-blur-sm: 8px;
+    --glass-blur-md: 16px;
+    --glass-blur-lg: 24px;
+    --glass-blur-xl: 32px;
+    --glass-blur-2xl: 40px;
+    
+    /* Glass Enhancement Filters */
+    --glass-saturate-light: 140%;
+    --glass-saturate-medium: 160%;
+    --glass-saturate-strong: 180%;
+    --glass-saturate-ultra: 200%;
+    
+    /* Glass Background Transparency */
+    --glass-bg-light: rgba(255, 255, 255, 0.08);
+    --glass-bg-medium: rgba(255, 255, 255, 0.12);
+    --glass-bg-strong: rgba(255, 255, 255, 0.18);
+    --glass-bg-ultra: rgba(255, 255, 255, 0.22);
+    
+    /* Glass Borders */
+    --glass-border-light: rgba(255, 255, 255, 0.15);
+    --glass-border-medium: rgba(255, 255, 255, 0.25);
+    --glass-border-strong: rgba(255, 255, 255, 0.35);
+    
+    /* Shadows */
+    --shadow-glass-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-glass-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-glass-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+    --shadow-glass-xl: 0 16px 64px rgba(0, 0, 0, 0.20);
+    
+    /* Transitions */
+    --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--dark-gray);
+    background: linear-gradient(135deg, 
+        #f8f9fa 0%, 
+        #ffffff 25%, 
+        #f5f7fa 50%, 
+        #ffffff 75%, 
+        #f8f9fa 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
+    min-height: 100vh;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ============================================
+   Profile Page Wrapper
+   ============================================ */
+.profile-page-wrapper {
+    padding-top: 80px;
+    min-height: 100vh;
+}
+
+/* ============================================
+   Page Header - Compact Style
+   ============================================ */
+.page-header {
+    background: #ffffff;
+    padding: 8px 0 12px;
+    margin-bottom: 8px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(218, 165, 32, 0.1);
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #DAA520;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.page-title i {
+    color: #DAA520;
+}
+
+.page-subtitle {
+    font-size: 1.125rem;
+    color: #DAA520;
+    margin: 8px 0 0;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+/* ============================================
+   Profile Section
+   ============================================ */
+.profile-section {
+    padding: 8px 0 16px;
+}
+
+/* ============================================
+   Profile Card - Enhanced Liquid Glass Style
+   ============================================ */
+.profile-card {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.20) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%) brightness(1.1) contrast(1.05);
+    -webkit-backdrop-filter: blur(20px) saturate(180%) brightness(1.1) contrast(1.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    height: fit-content;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.6) 50%, 
+        transparent 100%);
+}
+
+.profile-card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 
+        0 16px 48px rgba(0, 0, 0, 0.15),
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(24px) saturate(200%) brightness(1.15) contrast(1.1);
+    -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.15) contrast(1.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.avatar-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.avatar-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ocean-primary) 0%, var(--ocean-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    box-shadow: 0 4px 16px rgba(30, 60, 114, 0.3);
+    margin: 0 auto;
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #DAA520;
+    margin: 0 0 4px;
+}
+
+.profile-username {
+    font-size: 0.875rem;
+    color: var(--medium-gray);
+    margin: 0 0 12px;
+    font-weight: 500;
+}
+
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.role-badge.role-admin {
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.2) 0%, rgba(255, 193, 7, 0.2) 100%);
+    color: var(--warning-primary);
+    border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.role-badge.role-user {
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.2) 0%, rgba(66, 165, 245, 0.2) 100%);
+    color: var(--info-primary);
+    border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+.member-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.8125rem;
+    color: var(--medium-gray);
+    font-weight: 500;
+}
+
+.member-info i {
+    color: var(--sunset-orange);
+    font-size: 0.875rem;
+}
+
+/* ============================================
+   Quick Actions Card - Enhanced Liquid Glass
+   ============================================ */
+.quick-actions {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(255, 255, 255, 0.12) 50%,
+        rgba(255, 255, 255, 0.18) 100%
+    );
+    backdrop-filter: blur(18px) saturate(170%) brightness(1.08) contrast(1.03);
+    -webkit-backdrop-filter: blur(18px) saturate(170%) brightness(1.08) contrast(1.03);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 
+        0 6px 24px rgba(0, 0, 0, 0.08),
+        0 2px 6px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-actions::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.5) 50%, 
+        transparent 100%);
+}
+
+.quick-actions:hover {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 
+        0 12px 36px rgba(0, 0, 0, 0.12),
+        0 3px 12px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(22px) saturate(190%) brightness(1.12) contrast(1.08);
+    -webkit-backdrop-filter: blur(22px) saturate(190%) brightness(1.12) contrast(1.08);
+}
+
+.quick-actions-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #DAA520;
+    margin: 0 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quick-actions-title i {
+    color: #DAA520;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: var(--dark-gray);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: var(--transition-fast);
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: #DAA520;
+    color: #DAA520;
+    transform: translateX(4px);
+}
+
+.action-btn i {
+    color: #DAA520;
+    font-size: 1rem;
+}
+
+/* ============================================
+   Profile Content - Enhanced Liquid Glass Container
+   ============================================ */
+.profile-content {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.28) 0%,
+        rgba(255, 255, 255, 0.18) 50%,
+        rgba(255, 255, 255, 0.24) 100%
+    );
+    backdrop-filter: blur(24px) saturate(200%) brightness(1.12) contrast(1.08);
+    -webkit-backdrop-filter: blur(24px) saturate(200%) brightness(1.12) contrast(1.08);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 22px;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.12),
+        0 3px 10px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    position: relative;
+}
+
+.profile-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.7) 25%,
+        rgba(255, 255, 255, 0.9) 50%,
+        rgba(255, 255, 255, 0.7) 75%,
+        transparent 100%);
+}
+
+.profile-content:hover {
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.18),
+        0 5px 20px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(28px) saturate(220%) brightness(1.18) contrast(1.12);
+    -webkit-backdrop-filter: blur(28px) saturate(220%) brightness(1.18) contrast(1.12);
+}
+
+/* ============================================
+   Modern Tabs Navigation - Enhanced Glass
+   ============================================ */
+.modern-tabs {
+    background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.15) 0%, 
+        rgba(255, 255, 255, 0.08) 50%,
+        rgba(255, 255, 255, 0.12) 100%);
+    backdrop-filter: blur(12px) saturate(150%) brightness(1.05);
+    -webkit-backdrop-filter: blur(12px) saturate(150%) brightness(1.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 0;
+    padding: 0 20px;
+    position: relative;
+}
+
+.modern-tabs::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%);
+}
+
+.modern-tabs .nav-item {
+    margin: 0;
+}
+
+.modern-tabs .nav-link {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 12px 16px;
+    color: var(--medium-gray);
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.modern-tabs .nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #DAA520;
+}
+
+.modern-tabs .nav-link.active {
+    background: rgba(255, 255, 255, 0.15);
+    color: #DAA520;
+    font-weight: 600;
+}
+
+.modern-tabs .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+    right: 16px;
+    height: 2px;
+    background: linear-gradient(90deg, #DAA520 0%, #B8860B 100%);
+    border-radius: 1px;
+}
+
+.modern-tabs .nav-link i {
+    font-size: 1rem;
+}
+
+/* ============================================
+   Tab Content
+   ============================================ */
+.tab-content {
+    padding: 24px;
+}
+
+.content-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #DAA520;
+    margin: 0 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.content-title i {
+    color: #DAA520;
+}
+
+.content-subtitle {
+    font-size: 0.875rem;
+    color: var(--medium-gray);
+    margin: 0 0 20px;
+    line-height: 1.5;
+}
+
+/* ============================================
+   Modern Form Styles
+   ============================================ */
+.modern-form {
+    margin-top: 20px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--dark-gray);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.875rem;
+}
+
+.form-label i {
+    color: #DAA520;
+    font-size: 0.875rem;
+}
+
+.modern-input {
+    background: rgba(248, 249, 250, 0.8);
+    border: 1px solid rgba(233, 236, 239, 0.6);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.875rem;
+    transition: var(--transition-fast);
+    backdrop-filter: blur(var(--glass-blur-sm));
+    -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+}
+
+.modern-input:focus {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #DAA520;
+    box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.1);
+    outline: none;
+}
+
+.form-text {
+    font-size: 0.75rem;
+    color: var(--medium-gray);
+    margin-top: 4px;
+}
+
+/* ============================================
+   Role Badge Large
+   ============================================ */
+.role-badge-large {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.role-badge-large.role-admin {
+    background: linear-gradient(135deg, rgba(255, 152, 0, 0.2) 0%, rgba(255, 193, 7, 0.2) 100%);
+    color: var(--warning-primary);
+    border: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.role-badge-large.role-user {
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.2) 0%, rgba(66, 165, 245, 0.2) 100%);
+    color: var(--info-primary);
+    border: 1px solid rgba(33, 150, 243, 0.3);
+}
+
+/* ============================================
+   Button Styles
+   ============================================ */
+.btn-gradient-blue {
+    background: linear-gradient(135deg, #DAA520 0%, #B8860B 100%);
+    border: none;
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-gradient-blue:hover {
+    background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(218, 165, 32, 0.3);
+    color: var(--white);
+}
+
+.btn-gradient-orange {
+    background: linear-gradient(135deg, #DAA520 0%, #B8860B 100%);
+    border: none;
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-gradient-orange:hover {
+    background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(218, 165, 32, 0.3);
+    color: var(--white);
+}
+
+.btn-outline-secondary {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--medium-gray);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-outline-secondary:hover {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: var(--medium-gray);
+    color: var(--dark-gray);
+}
+
+/* ============================================
+   Security Tips Card - Enhanced Glass
+   ============================================ */
+.security-tips {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.18) 0%,
+        rgba(255, 255, 255, 0.10) 50%,
+        rgba(255, 255, 255, 0.14) 100%
+    );
+    backdrop-filter: blur(16px) saturate(160%) brightness(1.06) contrast(1.04);
+    -webkit-backdrop-filter: blur(16px) saturate(160%) brightness(1.06) contrast(1.04);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        0 1px 4px rgba(0, 0, 0, 0.03),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.security-tips::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.4) 50%, 
+        transparent 100%);
+}
+
+.security-tips h6 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #DAA520;
+    margin: 0 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.security-tips h6 i {
+    color: var(--info-primary);
+}
+
+.security-tips ul {
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.security-tips li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8125rem;
+    color: var(--medium-gray);
+    margin-bottom: 6px;
+}
+
+.security-tips li i {
+    color: var(--success-primary);
+    font-size: 0.75rem;
+}
+
+/* ============================================
+   Password Toggle Button
+   ============================================ */
+.password-toggle {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--medium-gray);
+    padding: 8px 12px;
+    border-radius: 0 8px 8px 0;
+    transition: var(--transition-fast);
+}
+
+.password-toggle:hover {
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--dark-gray);
+}
+
+/* ============================================
+   Password Strength Indicator
+   ============================================ */
+.password-strength {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.password-strength::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--danger-primary) 0%, var(--warning-primary) 50%, var(--success-primary) 100%);
+    transition: width 0.3s ease;
+}
+
+/* ============================================
+   Preference Items
+   ============================================ */
+.preference-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.preference-item:last-child {
+    border-bottom: none;
+}
+
+.preference-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--ocean-primary) 0%, var(--ocean-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.preference-icon i {
+    color: var(--white);
+    font-size: 1.125rem;
+}
+
+.preference-content {
+    flex: 1;
+}
+
+.preference-content h6 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #DAA520;
+    margin: 0 0 4px;
+}
+
+.preference-content p {
+    font-size: 0.8125rem;
+    color: var(--medium-gray);
+    margin: 0 0 12px;
+    line-height: 1.4;
+}
+
+/* ============================================
+   Form Switch Styles
+   ============================================ */
+.form-check-input:checked {
+    background-color: #DAA520;
+    border-color: #DAA520;
+}
+
+.form-check-label {
+    font-size: 0.8125rem;
+    color: var(--dark-gray);
+    font-weight: 500;
+}
+
+/* ============================================
+   Select Styles
+   ============================================ */
+.form-select {
+    background: rgba(248, 249, 250, 0.8);
+    border: 1px solid rgba(233, 236, 239, 0.6);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.875rem;
+    transition: var(--transition-fast);
+    backdrop-filter: blur(var(--glass-blur-sm));
+    -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+}
+
+.form-select:focus {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: #DAA520;
+    box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.1);
+    outline: none;
+}
+
+/* ============================================
+   Alert Styles - Enhanced Glass
+   ============================================ */
+.modern-alert {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.20) 0%,
+        rgba(255, 255, 255, 0.12) 50%,
+        rgba(255, 255, 255, 0.16) 100%
+    );
+    backdrop-filter: blur(14px) saturate(170%) brightness(1.08) contrast(1.05);
+    -webkit-backdrop-filter: blur(14px) saturate(170%) brightness(1.08) contrast(1.05);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    box-shadow: 
+        0 3px 12px rgba(0, 0, 0, 0.05),
+        0 1px 3px rgba(0, 0, 0, 0.02),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.modern-alert::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.5) 50%, 
+        transparent 100%);
+}
+
+.alert-success {
+    border-left: 4px solid var(--success-primary);
+}
+
+.alert-danger {
+    border-left: 4px solid var(--danger-primary);
+}
+
+.alert-success i {
+    color: var(--success-primary);
+}
+
+.alert-danger i {
+    color: var(--danger-primary);
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 768px) {
+    .profile-page-wrapper {
+        padding-top: 60px;
+    }
+    
+    .page-header {
+        padding: 6px 0 8px;
+        margin-bottom: 6px;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1rem;
+    }
+    
+    .profile-section {
+        padding: 4px 0 12px;
+    }
+    
+    .profile-card {
+        padding: 16px;
+        margin-bottom: 12px;
+    }
+    
+    .avatar-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 1.25rem;
+    }
+    
+    .profile-name {
+        font-size: 1.25rem;
+    }
+    
+    .quick-actions {
+        padding: 12px;
+    }
+    
+    .quick-actions-title {
+        font-size: 1rem;
+    }
+    
+    .action-btn {
+        padding: 8px 10px;
+        font-size: 0.8125rem;
+    }
+    
+    .profile-content {
+        margin-top: 0;
+    }
+    
+    .modern-tabs {
+        padding: 0 12px;
+    }
+    
+    .modern-tabs .nav-link {
+        padding: 10px 12px;
+        font-size: 0.8125rem;
+    }
+    
+    .tab-content {
+        padding: 16px;
+    }
+    
+    .content-title {
+        font-size: 1.125rem;
+    }
+    
+    .preference-item {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 0;
+    }
+    
+    .preference-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .preference-icon i {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-page-wrapper {
+        padding-top: 50px;
+    }
+    
+    .page-title {
+        font-size: 1.75rem;
+    }
+    
+    .page-subtitle {
+        font-size: 0.875rem;
+    }
+    
+    .profile-card {
+        padding: 12px;
+    }
+    
+    .avatar-circle {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+    }
+    
+    .profile-name {
+        font-size: 1.125rem;
+    }
+    
+    .quick-actions {
+        padding: 10px;
+    }
+    
+    .tab-content {
+        padding: 12px;
+    }
+    
+    .modern-tabs .nav-link {
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .content-title {
+        font-size: 1rem;
+    }
+    
+    .modern-input,
+    .form-select {
+        padding: 8px 10px;
+        font-size: 0.8125rem;
+    }
+    
+    .btn-gradient-blue,
+    .btn-gradient-orange,
+    .btn-outline-secondary {
+        padding: 8px 16px;
+        font-size: 0.8125rem;
+    }
+}
+
+/* ============================================
+   Dark Mode Support
+   ============================================ */
+[data-theme="dark"] .profile-page-wrapper,
+body.dark-mode .profile-page-wrapper {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+[data-theme="dark"] .page-title,
+[data-theme="dark"] .content-title,
+[data-theme="dark"] .profile-name,
+[data-theme="dark"] .quick-actions-title,
+body.dark-mode .page-title,
+body.dark-mode .content-title,
+body.dark-mode .profile-name,
+body.dark-mode .quick-actions-title {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+[data-theme="dark"] .page-subtitle,
+[data-theme="dark"] .content-subtitle,
+[data-theme="dark"] .profile-username,
+[data-theme="dark"] .member-info,
+[data-theme="dark"] .form-label,
+[data-theme="dark"] .form-text,
+[data-theme="dark"] .form-check-label,
+body.dark-mode .page-subtitle,
+body.dark-mode .content-subtitle,
+body.dark-mode .profile-username,
+body.dark-mode .member-info,
+body.dark-mode .form-label,
+body.dark-mode .form-text,
+body.dark-mode .form-check-label {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="dark"] .modern-input,
+[data-theme="dark"] .form-select,
+body.dark-mode .modern-input,
+body.dark-mode .form-select {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="dark"] .modern-input:focus,
+[data-theme="dark"] .form-select:focus,
+body.dark-mode .modern-input:focus,
+body.dark-mode .form-select:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--ocean-light);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+    .profile-page-wrapper {
+        background: white;
+    }
+    
+    .profile-card,
+    .quick-actions,
+    .profile-content {
+        backdrop-filter: none;
+        background: white;
+        border: 1px solid #ddd;
+    }
+}

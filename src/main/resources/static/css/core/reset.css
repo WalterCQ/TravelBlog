@@ -1,0 +1,148 @@
+/**
+ * Modern CSS Reset (2025)
+ * Based on modern CSS best practices
+ */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set core root defaults */
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* Set core body defaults */
+body {
+    min-height: 100vh;
+    line-height: var(--line-height-normal, 1.5);
+    font-family: var(--font-family-base, system-ui, sans-serif);
+    font-size: var(--font-size-base, 1rem);
+    color: var(--color-text-primary, #212529);
+    background-color: var(--color-bg-primary, #ffffff);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+
+/* Remove button styling */
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Remove list styles */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+/* Remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Remove default anchor styling */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Improve text spacing */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+/* Create a root stacking context */
+#root,
+#__next {
+    isolation: isolate;
+}
+
+/* Ensure full width for block elements */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl,
+figure, hr,
+table, fieldset {
+    width: 100%;
+}
+
+/* Consistent table borders */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Form elements */
+textarea {
+    resize: vertical;
+}
+
+/* Focus styles */
+:focus-visible {
+    outline: 2px solid var(--color-border-focus, #0066cc);
+    outline-offset: 2px;
+}
+
+/* Hidden but accessible */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+
+

@@ -1,0 +1,909 @@
+/* ========================================
+   CONTACT PAGE - APPLE LIQUID GLASS DESIGN 2025
+   Inspired by Apple's Liquid Glass Design Language
+   Features: Glass Morphism, Dynamic Transparency, Refraction Effects
+   ======================================== */
+
+/* Hero Section */
+.contact-hero {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
+    padding: 80px 0 60px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+/* Contact Form Container - Liquid Glass Design + Form Optimization (2025) */
+.contact-form {
+    max-width: var(--container-form);  /* 600px - optimal for form completion */
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 
+        0 8px 24px rgba(30, 60, 114, 0.15),
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    animation: liquidGlassEntrance 0.8s ease-out;
+}
+
+/* Liquid Glass Entrance Animation */
+@keyframes liquidGlassEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+        backdrop-filter: blur(0px);
+    }
+    50% {
+        opacity: 0.7;
+        transform: translateY(20px) scale(0.98);
+        backdrop-filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        backdrop-filter: blur(20px);
+    }
+}
+
+/* Removed shimmer animation bar */
+
+/* Removed hover effect for main contact form */
+
+/* Dynamic Refraction Effect */
+.contact-form::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+/* Removed hover refraction effect */
+
+@keyframes refractionPulse {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(180deg); }
+}
+
+/* Contact Image */
+.contact-image {
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Removed moving shimmer effect from contact image */
+
+.contact-image:hover {
+    transform: scale(1.02) rotate(0.5deg);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Title */
+.form-title {
+    color: #1e3c72;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.form-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #f64f59 0%, #ff6b6b 50%, #feca57 100%);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(246, 79, 89, 0.3);
+}
+
+/* Form Labels */
+.form-label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-label i {
+    color: #2a5298;
+    font-size: 1rem;
+    width: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Lucide icon sizing and visibility (light + dark modes) */
+.form-label [data-lucide],
+.form-label .lucide,
+.form-label i[data-lucide],
+.form-label i[data-lucide] svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor !important;
+    fill: none;
+    stroke-width: 2;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.form-label:hover i {
+    transform: scale(1.2);
+    color: #f64f59;
+}
+
+/* Form Controls - Liquid Glass Theme */
+.form-control, .form-select {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.form-control:hover, .form-select:hover {
+    border-color: rgba(144, 202, 249, 0.6);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 
+        0 8px 24px rgba(42, 82, 152, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: rgba(42, 82, 152, 0.8);
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 
+        0 0 0 4px rgba(42, 82, 152, 0.15),
+        0 12px 32px rgba(42, 82, 152, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    outline: none;
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Placeholder Styling */
+.form-control::placeholder {
+    color: #90a4ae;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Textarea Specific */
+textarea.form-control {
+    resize: vertical;
+    min-height: 140px;
+    line-height: 1.8;
+}
+
+/* Select Dropdown - Custom Arrow */
+.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%232a5298' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-size: 18px 14px;
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 3rem;
+}
+
+/* Submit Button - Liquid Glass Design */
+.btn-submit {
+    background: rgba(246, 79, 89, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 1rem 2.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 24px rgba(246, 79, 89, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Removed moving shimmer effect from submit button */
+
+.btn-submit:hover {
+    background: rgba(246, 79, 89, 0.25);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 32px rgba(246, 79, 89, 0.3),
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-submit:active {
+    background: rgba(246, 79, 89, 0.3);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    transform: translateY(-1px);
+    box-shadow: 
+        0 6px 16px rgba(246, 79, 89, 0.25),
+        0 2px 6px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.btn-submit i {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-submit:hover i {
+    transform: translateX(5px);
+}
+
+/* Validation Feedback */
+.invalid-feedback {
+    display: none;
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    padding-left: 0.5rem;
+}
+
+.form-control.is-invalid, .form-select.is-invalid {
+    border-color: #e74c3c;
+    background: linear-gradient(to bottom, #fff5f5, #ffffff);
+    animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.form-control.is-invalid:focus, .form-select.is-invalid:focus {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.15);
+}
+
+.form-control.is-invalid ~ .invalid-feedback,
+.form-select.is-invalid ~ .invalid-feedback {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-control.is-valid, .form-select.is-valid {
+    border-color: #27ae60;
+    background: linear-gradient(to bottom, #f0fdf4, #ffffff);
+}
+
+.form-control.is-valid:focus, .form-select.is-valid:focus {
+    border-color: #27ae60;
+    box-shadow: 0 0 0 4px rgba(39, 174, 96, 0.15);
+}
+
+/* Loading State */
+.btn-submit.loading {
+    pointer-events: none;
+    opacity: 0.8;
+    position: relative;
+}
+
+.btn-submit.loading::after {
+    content: '';
+    position: absolute;
+    right: 2rem;
+    width: 20px;
+    height: 20px;
+    border: 3px solid transparent;
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===================================
+   CONTACT INFO SIDEBAR - REDESIGNED
+   =================================== */
+
+.contact-info-enhanced {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 
+        0 6px 18px rgba(30, 60, 114, 0.12),
+        0 2px 6px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    animation: liquidGlassEntrance 0.8s ease-out 0.2s both;
+}
+
+/* Removed shimmer animation from contact info */
+
+/* Contact Items - Liquid Glass Cards */
+.contact-item-enhanced {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideInUp 0.6s ease forwards;
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.contact-item-enhanced:last-child { margin-bottom: 0; }
+.contact-item-enhanced:nth-child(1) { animation-delay: 0.1s; }
+.contact-item-enhanced:nth-child(2) { animation-delay: 0.2s; }
+.contact-item-enhanced:nth-child(3) { animation-delay: 0.3s; }
+.contact-item-enhanced:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.contact-item-enhanced::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--item-gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.contact-item-enhanced:hover::before {
+    opacity: 1;
+}
+
+.contact-item-enhanced:hover {
+    transform: translateX(8px) translateY(-2px) scale(1.02);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 
+        0 6px 16px rgba(30, 60, 114, 0.1),
+        0 2px 6px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Contact Icons - Liquid Glass Design */
+.contact-icon-enhanced {
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-size: 22px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    float: left;
+    margin-right: 1rem;
+    margin-top: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 6px 18px rgba(0, 0, 0, 0.1),
+        0 2px 6px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-icon-enhanced::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--icon-gradient);
+    border-radius: 16px;
+    z-index: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.8;
+}
+
+.contact-item-enhanced:hover .contact-icon-enhanced {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 
+        0 8px 24px rgba(0, 0, 0, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Ensure Lucide icons remain visible on hover */
+.contact-item-enhanced:hover .contact-icon-enhanced [data-lucide],
+.contact-item-enhanced:hover .contact-icon-enhanced .lucide,
+.contact-item-enhanced:hover .contact-icon-enhanced i[data-lucide],
+.contact-item-enhanced:hover .contact-icon-enhanced i[data-lucide] svg {
+    stroke: white !important;
+    fill: none !important;
+    opacity: 1 !important;
+}
+
+.contact-item-enhanced:hover .contact-icon-enhanced::before {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.contact-icon-enhanced i {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure Lucide SVGs inside contact icons render with consistent size */
+.contact-icon-enhanced [data-lucide],
+.contact-icon-enhanced .lucide,
+.contact-icon-enhanced i[data-lucide],
+.contact-icon-enhanced i[data-lucide] svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    stroke: currentColor !important; /* Lucide uses stroke; bind to current text color */
+    fill: none;
+    color: inherit;       /* Inherit white from container for light mode */
+}
+
+/* Map card header Lucide icons */
+.location-map .card-header [data-lucide],
+.location-map .card-header .lucide,
+.location-map .card-header i[data-lucide],
+.location-map .card-header i[data-lucide] svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor !important;
+    fill: none;
+    stroke-width: 2;
+}
+
+/* Icon Color Schemes - Ocean & Sunset Theme */
+.contact-icon-enhanced.address {
+    --icon-gradient: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    --item-gradient: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%);
+}
+
+.contact-icon-enhanced.phone {
+    --icon-gradient: linear-gradient(135deg, #f64f59 0%, #ff6b6b 100%);
+    --item-gradient: linear-gradient(180deg, #f64f59 0%, #ff6b6b 100%);
+}
+
+.contact-icon-enhanced.email {
+    --icon-gradient: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+    --item-gradient: linear-gradient(180deg, #00b4db 0%, #0083b0 100%);
+}
+
+.contact-icon-enhanced.hours {
+    --icon-gradient: linear-gradient(135deg, #feca57 0%, #ff9ff3 100%);
+    --item-gradient: linear-gradient(180deg, #feca57 0%, #ff9ff3 100%);
+}
+
+/* Contact Content */
+.contact-content h5 {
+    color: #1e3c72;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.contact-content p {
+    color: #546e7a;
+    margin: 0;
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+.contact-link {
+    color: #2a5298;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.contact-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #f64f59, #feca57);
+    transition: width 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #f64f59;
+    transform: translateX(3px);
+}
+
+.contact-link:hover::after {
+    width: 100%;
+}
+
+/* Alert Messages */
+.alert {
+    border-radius: 12px;
+    border: none;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    animation: slideDown 0.4s ease;
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+    color: #155724;
+    border-left: 4px solid #28a745;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+}
+
+/* Location Map Card */
+.location-map {
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: 0.5s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.location-map .card {
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(30, 60, 114, 0.1);
+    transition: all 0.3s ease;
+}
+
+.location-map .card:hover {
+    box-shadow: 0 15px 40px rgba(30, 60, 114, 0.15);
+    transform: translateY(-5px);
+}
+
+.location-map .card-header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 1rem 1.25rem;
+    border: none;
+}
+
+.location-map .card-header h6 {
+    margin: 0;
+    font-weight: 600;
+    color: white;
+}
+
+.location-map .card-header i {
+    color: #feca57;
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .contact-info-enhanced {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-form {
+        padding: var(--padding-container-tablet);
+        border-radius: 16px;
+    }
+    
+    .form-title {
+        font-size: 1.75rem;
+    }
+    
+    .btn-submit {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .contact-item-enhanced {
+        padding: 1.25rem;
+    }
+    
+    .contact-icon-enhanced {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-form {
+        padding: var(--padding-container-mobile);
+        border-radius: 12px;
+    }
+    
+    .contact-image {
+        max-height: 150px;
+        border-radius: 12px;
+    }
+    
+    .form-title {
+        font-size: 1.5rem;
+    }
+    
+    .contact-info-enhanced {
+        padding: 1.5rem;
+    }
+    
+    .contact-item-enhanced {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* ===================================
+   DARK MODE SUPPORT
+   =================================== */
+
+body.dark-mode .contact-form {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .form-title {
+    color: #90caf9;
+}
+
+body.dark-mode .form-label {
+    color: #e0e0e0;
+}
+
+body.dark-mode .form-control,
+body.dark-mode .form-select {
+    background: linear-gradient(to bottom, #404040, #4a4a4a);
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+body.dark-mode .form-control:hover,
+body.dark-mode .form-select:hover {
+    background: #4a4a4a;
+    border-color: #2a5298;
+}
+
+body.dark-mode .form-control:focus,
+body.dark-mode .form-select:focus {
+    background: #4a4a4a;
+    border-color: #90caf9;
+    box-shadow: 0 0 0 4px rgba(144, 202, 249, 0.2);
+}
+
+body.dark-mode .form-control::placeholder {
+    color: #999;
+}
+
+body.dark-mode .contact-info-enhanced {
+    background: linear-gradient(135deg, 
+        rgba(45, 45, 45, 0.95) 0%, 
+        rgba(58, 58, 58, 0.95) 100%);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .contact-item-enhanced {
+    background: rgba(64, 64, 64, 0.8);
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .contact-item-enhanced:hover {
+    background: rgba(74, 74, 74, 0.9);
+    border-color: rgba(42, 82, 152, 0.3);
+}
+
+body.dark-mode .contact-content h5 {
+    color: #90caf9;
+}
+
+body.dark-mode .contact-content p {
+    color: #b0bec5;
+}
+
+body.dark-mode .contact-link {
+    color: #90caf9;
+}
+
+body.dark-mode .contact-link:hover {
+    color: #ff6b6b;
+}
+
+body.dark-mode .location-map .card {
+    background: #2d2d2d;
+    border-color: #404040;
+}
+
+body.dark-mode .location-map .card-header {
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+}
+
+body.dark-mode .alert-success {
+    background: linear-gradient(135deg, #1e4620 0%, #2d5a2e 100%);
+    color: #a8e6a3;
+}
+
+body.dark-mode .alert-danger {
+    background: linear-gradient(135deg, #5a1e1e 0%, #6e2d2d 100%);
+    color: #f5a9a9;
+}
+
+/* Performance Optimizations */
+.contact-form,
+.contact-info-enhanced,
+.contact-item-enhanced,
+.btn-submit,
+.contact-icon-enhanced {
+    will-change: transform, backdrop-filter, box-shadow;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* GPU Acceleration for Liquid Glass Effects */
+.btn-submit,
+.contact-icon-enhanced {
+    contain: layout style paint;
+    isolation: isolate;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .contact-form,
+    .contact-info-enhanced,
+    .contact-item-enhanced,
+    .contact-form::before,
+    .contact-form::after {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .contact-form:hover,
+    .contact-item-enhanced:hover {
+        transform: none !important;
+    }
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(20px)) {
+    .contact-form {
+        background: rgba(255, 255, 255, 0.95);
+    }
+    
+    .contact-info-enhanced {
+        background: rgba(255, 255, 255, 0.9);
+    }
+    
+    .contact-item-enhanced {
+        background: rgba(255, 255, 255, 0.85);
+    }
+    
+    .form-control, .form-select {
+        background: rgba(255, 255, 255, 0.8);
+    }
+}
+
+/* Animation for page load */
+.contact-form,
+.contact-info-enhanced {
+    animation: fadeInScale 0.6s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+

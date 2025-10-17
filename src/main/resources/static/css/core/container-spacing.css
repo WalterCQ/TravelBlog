@@ -1,0 +1,230 @@
+/**
+ * Container Spacing System (2025)
+ * Unified spacing system for all pages - Airbnb/Booking.com standard
+ * 
+ * This file provides consistent container padding across all devices
+ * matching industry-leading travel websites' spacing patterns.
+ */
+
+/* ============================================
+   Base Container Spacing Class
+   ============================================ */
+.container-spacing {
+    padding-left: var(--padding-container-mobile);
+    padding-right: var(--padding-container-mobile);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================
+   Responsive Padding System
+   ============================================ */
+
+/* Tablet devices (≥768px) */
+@media (min-width: 768px) {
+    .container-spacing {
+        padding-left: var(--padding-container-tablet);
+        padding-right: var(--padding-container-tablet);
+    }
+}
+
+/* Desktop devices (≥992px) */
+@media (min-width: 992px) {
+    .container-spacing {
+        padding-left: var(--padding-container-desktop);
+        padding-right: var(--padding-container-desktop);
+    }
+}
+
+/* Ultra-wide screens (≥1600px) */
+@media (min-width: 1600px) {
+    .container-spacing {
+        padding-left: var(--padding-container-wide);
+        padding-right: var(--padding-container-wide);
+    }
+}
+
+/* ============================================
+   Container Width Variants
+   ============================================ */
+
+/* Standard container (1200px max-width) */
+.container-standard {
+    max-width: var(--container-xl);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Wide container (1400px max-width) */
+.container-wide-layout {
+    max-width: var(--container-wide);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* XXL container (1400px max-width) */
+.container-xxl-layout {
+    max-width: var(--container-xxl);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Reading-optimized container (800px max-width) */
+.container-reading-layout {
+    max-width: var(--container-reading);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Form-optimized container (600px max-width) */
+.container-form-layout {
+    max-width: var(--container-form);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ============================================
+   Combined Container Classes
+   Apply both width and spacing in one class
+   ============================================ */
+
+.container-standard-spacing {
+    max-width: var(--container-xl);
+    padding-left: var(--padding-container-mobile);
+    padding-right: var(--padding-container-mobile);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-wide-spacing {
+    max-width: var(--container-wide);
+    padding-left: var(--padding-container-mobile);
+    padding-right: var(--padding-container-mobile);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-reading-spacing {
+    max-width: var(--container-reading);
+    padding-left: var(--padding-container-mobile);
+    padding-right: var(--padding-container-mobile);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-form-spacing {
+    max-width: var(--container-form);
+    padding-left: var(--padding-container-mobile);
+    padding-right: var(--padding-container-mobile);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Responsive padding for combined classes */
+@media (min-width: 768px) {
+    .container-standard-spacing,
+    .container-wide-spacing,
+    .container-reading-spacing,
+    .container-form-spacing {
+        padding-left: var(--padding-container-tablet);
+        padding-right: var(--padding-container-tablet);
+    }
+}
+
+@media (min-width: 992px) {
+    .container-standard-spacing,
+    .container-wide-spacing,
+    .container-reading-spacing,
+    .container-form-spacing {
+        padding-left: var(--padding-container-desktop);
+        padding-right: var(--padding-container-desktop);
+    }
+}
+
+@media (min-width: 1600px) {
+    .container-standard-spacing,
+    .container-wide-spacing,
+    .container-reading-spacing,
+    .container-form-spacing {
+        padding-left: var(--padding-container-wide);
+        padding-right: var(--padding-container-wide);
+    }
+}
+
+/* ============================================
+   Bootstrap Container Override
+   Ensure Bootstrap containers use our new widths
+   ============================================ */
+
+.container {
+    max-width: 100%;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: var(--container-sm);
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: var(--container-md);
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: var(--container-lg);
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: var(--container-xl); /* Now 1200px */
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: var(--container-xxl); /* Now 1400px */
+    }
+}
+
+/* ============================================
+   Section Spacing Utilities
+   Consistent vertical and horizontal spacing
+   ============================================ */
+
+.section-spacing {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+    .section-spacing {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .section-spacing {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+    .container-spacing,
+    .container-standard-spacing,
+    .container-wide-spacing,
+    .container-reading-spacing,
+    .container-form-spacing {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+

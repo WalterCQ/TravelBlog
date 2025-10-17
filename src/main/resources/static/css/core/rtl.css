@@ -1,0 +1,19 @@
+html[dir="rtl"] {
+    direction: rtl;
+}
+
+/* Bootstrap utility adjustments for RTL */
+body.rtl .ms-auto { margin-left: 0 !important; margin-right: auto !important; }
+body.rtl .me-2 { margin-left: .5rem !important; margin-right: 0 !important; }
+body.rtl .ms-2 { margin-right: .5rem !important; margin-left: 0 !important; }
+
+/* Navbar basics */
+body.rtl .navbar .dropdown-menu {
+    text-align: right;
+}
+
+/* Generic icon spacing flip */
+body.rtl [class*="me-"] { margin-left: .5rem; margin-right: 0; }
+body.rtl [class*="ms-"] { margin-right: .5rem; margin-left: 0; }
+
+

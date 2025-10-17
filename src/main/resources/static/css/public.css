@@ -1,0 +1,112 @@
+.filter-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-tab {
+    background: transparent;
+    border: 2px solid #e9ecef;
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-light);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.filter-tab:hover,
+.filter-tab.active {
+    background: var(--primary-gold);
+    border-color: var(--primary-gold);
+    color: white;
+}
+
+/* Page filter controls */
+.filters-section {
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.5rem 0;
+}
+
+.filter-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    border: 2px solid #e9ecef;
+    border-radius: var(--border-radius-small);
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    background: white;
+}
+
+.filter-select:focus {
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 0 0.2rem rgba(218, 165, 32, 0.25);
+    outline: none;
+}
+
+/* Price range filter */
+.price-range-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.price-range {
+    flex: 1;
+    min-width: 200px;
+}
+
+.price-value {
+    font-weight: 600;
+    color: var(--primary-gold);
+    min-width: 100px;
+}
+
+/* Results counter */
+.results-count {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+/* Dark mode overrides */
+body.dark-mode .filters-section {
+    background: #262626;
+    border-bottom-color: #333;
+}
+
+body.dark-mode .filter-select {
+    background: #2f2f2f;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-mode .results-count {
+    color: #aaaaaa;
+}
+
+/* Filter reset button */
+.filter-reset {
+    background: transparent;
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    border-radius: 25px;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.filter-reset:hover {
+    background: #dc3545;
+    color: white;
+}

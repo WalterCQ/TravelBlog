@@ -1,0 +1,77 @@
+body { 
+    padding-top: 80px;
+}
+#worldMapContainer {
+    text-align: center; 
+    margin-bottom: 30px;
+    /* Ocean gradient (light mode) */
+    background: linear-gradient(135deg, #6dd5ed 0%, #2193b0 100%);
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 100%;
+    overflow: hidden;
+}
+/* Dark mode: deep ocean gradient */
+body.dark-mode #worldMapContainer,
+[data-theme="dark"] #worldMapContainer {
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+}
+
+/* System dark preference fallback */
+@media (prefers-color-scheme: dark) {
+    #worldMapContainer {
+        background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    }
+}
+#worldMap .continent { 
+    stroke: #FFFFFF;
+    stroke-width: 5;
+    cursor: pointer;
+    transition: fill 0.2s ease-in-out, stroke-width 0.2s ease-in-out;
+}
+#worldMap .continent:hover {
+    fill: #a8a8a8 !important; 
+    stroke: #F0F0F0;
+    stroke-width: 30;
+}
+#worldMap .continent.active-continent {
+    fill: #0d6efd !important; 
+    stroke: #0a58ca;
+    stroke-width: 40; 
+}
+#selectedContinentName {
+    color: #212529; 
+    font-weight: 500; 
+    scroll-margin-top: 95px;
+}
+#attractionsSection {
+    min-height: 400px;
+}
+.card.blank-card {
+    border-style: dashed;
+    background-color: #f8f9fa;
+}
+.modal-info-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.modal-info-icon {
+    margin-right: 0.6rem;
+    flex-shrink: 0;
+}
+
+#selectedContinentName {
+    color: #212529; 
+    font-weight: 500; 
+    scroll-margin-top: 95px; 
+}
+#mapInstructionText { 
+    min-height: 1.5em; 
+}
+
+#modalAttractionName {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+}

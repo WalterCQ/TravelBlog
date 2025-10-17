@@ -1,0 +1,1897 @@
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #ffffff;
+    --text-color: #2c3e50;
+    --text-muted: #6c757d;
+    --border-color: #e9ecef;
+    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --accent-color: #DAA520;
+    --hover-overlay: rgba(218, 165, 32, 0.1);
+    
+    --post-spacing: 1.78vw;
+    --post-size: 25vw;
+    --mask-size: 100vw;
+    --carousel-bg: #fff;
+    --info-overlay: rgba(23, 23, 23, 0.5);
+    --btn-bg: #fff;
+    --btn-border: #171717;
+    --btn-hover-bg: #000;
+    --icon-fill: #171717;
+    --icon-hover-fill: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: #000000;
+        --bg-secondary: #000000;
+        --text-color: #e0e0e0;
+        --text-muted: #b0b0b0;
+        --border-color: #404040;
+        --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+        --accent-color: #ffd700;
+        --hover-overlay: rgba(255, 215, 0, 0.1);
+        
+        --carousel-bg: #000000;
+        --info-overlay: rgba(0, 0, 0, 0.8);
+        --btn-bg: #000000;
+        --btn-border: #555;
+        --btn-hover-bg: #ffd700;
+        --icon-fill: #e0e0e0;
+        --icon-hover-fill: #000000;
+    }
+}
+
+[data-theme="dark"] {
+    --bg-primary: #000000;
+    --bg-secondary: #000000;
+    --text-color: #e0e0e0;
+    --text-muted: #b0b0b0;
+    --border-color: #404040;
+    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+    --accent-color: #ffd700;
+    --hover-overlay: rgba(255, 215, 0, 0.1);
+    
+    --carousel-bg: #000000;
+    --info-overlay: rgba(0, 0, 0, 0.8);
+    --btn-bg: #000000;
+    --btn-border: #555;
+    --btn-hover-bg: #ffd700;
+    --icon-fill: #e0e0e0;
+    --icon-hover-fill: #000000;
+}
+
+body.dark-mode {
+    --bg-primary: #000000;
+    --bg-secondary: #000000;
+    --text-color: #e0e0e0;
+    --text-muted: #b0b0b0;
+    --border-color: #404040;
+    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.5);
+    --accent-color: #ffd700;
+    --hover-overlay: rgba(255, 215, 0, 0.1);
+    
+    --carousel-bg: #000000;
+    --info-overlay: rgba(0, 0, 0, 0.8);
+    --btn-bg: #000000;
+    --btn-border: #555;
+    --btn-hover-bg: #ffd700;
+    --icon-fill: #e0e0e0;
+    --icon-hover-fill: #000000;
+}
+
+.homepage-content {
+    background-color: var(--bg-primary);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Lato', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+}
+
+/* ========================================
+   HERO CAROUSEL SECTION - GLASSMORPHISM CAPTIONS
+   Reference: Footer glassmorphism design 2025
+   ======================================== */
+
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Enhanced carousel caption - Clean text overlay without background */
+.carousel-caption {
+    /* Remove all backgrounds and borders for clean look */
+    background: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    
+    border: none;
+    box-shadow: none;
+    
+    /* Fixed positioning to prevent content cutoff */
+    padding: 1.5rem 2.5rem !important;
+    bottom: 20% !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+    max-width: 650px;
+    
+    /* Ensure content is visible */
+    position: relative;
+    z-index: 10;
+}
+
+/* Remove glow effect border */
+.carousel-caption::before {
+    display: none;
+}
+
+.carousel-caption h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: white;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: unset;
+    max-width: none;
+}
+
+/* Arabic font support for carousel titles */
+html:lang(ar) .carousel-caption h3 {
+    font-family: 'Noto Sans Arabic', 'Noto Sans', 'Segoe UI', sans-serif;
+}
+
+.carousel-caption .custom-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 0;
+}
+
+/* Carousel controls with glassmorphism */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 60px;
+    height: 60px;
+    
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    backdrop-filter: blur(15px) saturate(150%);
+    -webkit-backdrop-filter: blur(15px) saturate(150%);
+    
+    border-radius: 50%;
+    border: 1px solid rgba(218, 165, 32, 0.3);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.8;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Carousel control icons - smaller size */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 16px !important;
+    height: 16px !important;
+    background-size: 16px 16px !important;
+}
+
+.carousel-control-prev {
+    left: 20px;
+}
+
+.carousel-control-next {
+    right: 20px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    opacity: 1;
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.9) 0%,
+        rgba(218, 165, 32, 0.8) 100%
+    );
+    border-color: rgba(218, 165, 32, 0.8);
+    box-shadow: 
+        0 8px 24px rgba(218, 165, 32, 0.4),
+        0 4px 12px rgba(218, 165, 32, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%);
+}
+
+/* Carousel indicators with glassmorphism */
+.carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(218, 165, 32, 0.5);
+    transition: all 0.3s ease;
+}
+
+.carousel-indicators .active {
+    background: linear-gradient(135deg, #DAA520 0%, #FF6B35 100%);
+    width: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(218, 165, 32, 0.5);
+}
+
+/* Ensure carousel has proper height */
+.hero-section .carousel-inner,
+.hero-section .carousel-item {
+    height: 100vh;
+    min-height: 500px;
+}
+
+.hero-section .carousel-item video,
+.hero-section .carousel-item img {
+    height: 100vh;
+    min-height: 500px;
+    object-fit: cover;
+}
+
+/* Responsive carousel height */
+@media (max-width: 768px) {
+    .hero-section .carousel-inner,
+    .hero-section .carousel-item {
+        height: 100vh;
+        min-height: 400px;
+    }
+    
+    .hero-section .carousel-item video,
+    .hero-section .carousel-item img {
+        height: 100vh;
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section .carousel-inner,
+    .hero-section .carousel-item {
+        height: 100vh;
+        min-height: 350px;
+    }
+    
+    .hero-section .carousel-item video,
+    .hero-section .carousel-item img {
+        height: 100vh;
+        min-height: 350px;
+    }
+    
+    /* Move caption higher on very small screens */
+    .carousel-caption {
+        bottom: 50% !important;
+    }
+}
+
+/* ========================================
+   WORLD CONNECTION SECTION
+   ======================================== */
+
+.world-section .lead.fs-5 {
+    font-weight: 500 !important;
+    line-height: 1.7;
+}
+
+/* Premium theme color icons and text for world section */
+.world-section ul li:nth-child(1) {
+    color: #4285f4 !important;
+}
+
+.world-section ul li:nth-child(1) i[data-lucide="globe"],
+.world-section ul li:nth-child(1) i[data-lucide="globe"] svg,
+.world-section ul li:nth-child(1) svg {
+    color: #4285f4 !important;
+    stroke: #4285f4 !important;
+    filter: drop-shadow(0 2px 6px rgba(66, 133, 244, 0.3));
+    animation: icon-pulse-blue 2s ease-in-out infinite;
+}
+
+.world-section ul li:nth-child(2) {
+    color: #B8860B !important;
+}
+
+.world-section ul li:nth-child(2) i[data-lucide="file-text"],
+.world-section ul li:nth-child(2) i[data-lucide="file-text"] svg,
+.world-section ul li:nth-child(2) svg {
+    color: #B8860B !important;
+    stroke: #B8860B !important;
+    filter: drop-shadow(0 2px 6px rgba(184, 134, 11, 0.3));
+    animation: icon-pulse-darkgold 2s ease-in-out infinite;
+    animation-delay: 0.3s;
+}
+
+.world-section ul li:nth-child(3) {
+    color: #DAA520 !important;
+}
+
+.world-section ul li:nth-child(3) i[data-lucide="handshake"],
+.world-section ul li:nth-child(3) i[data-lucide="handshake"] svg,
+.world-section ul li:nth-child(3) svg {
+    color: #DAA520 !important;
+    stroke: #DAA520 !important;
+    filter: drop-shadow(0 2px 6px rgba(218, 165, 32, 0.3));
+    animation: icon-pulse-accent 2s ease-in-out infinite;
+    animation-delay: 0.6s;
+}
+
+@keyframes icon-pulse-blue {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 2px 6px rgba(66, 133, 244, 0.3));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 4px 12px rgba(66, 133, 244, 0.5));
+    }
+}
+
+@keyframes icon-pulse-darkgold {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 2px 6px rgba(184, 134, 11, 0.3));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 4px 12px rgba(184, 134, 11, 0.5));
+    }
+}
+
+@keyframes icon-pulse-accent {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 2px 6px rgba(218, 165, 32, 0.3));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 4px 12px rgba(218, 165, 32, 0.5));
+    }
+}
+
+/* Liquid Glass Button - Explore Now - 24px圆角设计 */
+.world-section .btn-primary.btn-lg {
+    position: relative;
+    overflow: hidden;
+    
+    /* Liquid glass background - unified with back-to-top button */
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.18) 0%,
+        rgba(255, 255, 255, 0.12) 60%,
+        rgba(255, 255, 255, 0.20) 100%),
+        radial-gradient(120% 120% at 20% 10%, rgba(218, 165, 32, 0.28), rgba(218, 165, 32, 0));
+    backdrop-filter: blur(18px) saturate(165%) brightness(1.08);
+    -webkit-backdrop-filter: blur(18px) saturate(165%) brightness(1.08);
+    
+    /* 24px border radius - unified design language */
+    border-radius: 24px;
+    border: 1px solid rgba(218, 165, 32, 0.5);
+    color: rgba(218, 165, 32, 0.95);
+    font-weight: 700;
+    padding: 1rem 2.5rem;
+    
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, backdrop-filter;
+    transform: translateZ(0);
+}
+
+/* Liquid effect animation */
+.world-section .btn-primary.btn-lg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(218, 165, 32, 0.3) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: all 0.6s ease;
+    animation: liquid-flow 3s ease-in-out infinite;
+}
+
+@keyframes liquid-flow {
+    0%, 100% {
+        transform: translate(-25%, -25%) scale(1);
+    }
+    25% {
+        transform: translate(-10%, -35%) scale(1.1);
+    }
+    50% {
+        transform: translate(-35%, -15%) scale(0.9);
+    }
+    75% {
+        transform: translate(-15%, -25%) scale(1.05);
+    }
+}
+
+.world-section .btn-primary.btn-lg:hover {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(255, 255, 255, 0.16) 60%,
+        rgba(255, 255, 255, 0.24) 100%),
+        radial-gradient(120% 120% at 20% 10%, rgba(218, 165, 32, 0.38), rgba(218, 165, 32, 0));
+    border-color: rgba(218, 165, 32, 0.75);
+    transform: translateY(-2px) scale(1.02);
+    color: rgba(218, 165, 32, 1);
+}
+
+.world-section .btn-primary.btn-lg:hover::before {
+    opacity: 1;
+}
+
+/* Dark mode support for world section - 24px圆角 */
+body.dark-mode .world-section .btn-primary.btn-lg {
+    background: linear-gradient(135deg,
+        rgba(20, 20, 20, 0.55) 0%,
+        rgba(10, 10, 10, 0.45) 60%,
+        rgba(25, 25, 25, 0.58) 100%),
+        radial-gradient(120% 120% at 20% 10%, rgba(218, 165, 32, 0.25), rgba(138, 43, 226, 0.1));
+    backdrop-filter: blur(20px) saturate(150%) brightness(1.15);
+    -webkit-backdrop-filter: blur(20px) saturate(150%) brightness(1.15);
+    
+    border-radius: 24px;
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    color: rgba(255, 215, 0, 0.95);
+}
+
+body.dark-mode .world-section .btn-primary.btn-lg:hover {
+    background: linear-gradient(135deg,
+        rgba(30, 30, 30, 0.60) 0%,
+        rgba(20, 20, 20, 0.50) 60%,
+        rgba(35, 35, 35, 0.63) 100%),
+        radial-gradient(120% 120% at 20% 10%, rgba(218, 165, 32, 0.35), rgba(138, 43, 226, 0.15));
+    color: rgba(255, 215, 0, 1);
+    border-color: rgba(255, 215, 0, 0.75);
+}
+
+/* ========================================
+   LIQUID GLASS IMAGE CONTAINER
+   Reference: Footer glassmorphism design 2025
+   ======================================== */
+
+.liquid-glass-image-container {
+    position: relative;
+    display: inline-block;
+    padding: 24px;
+    
+    /* Premium liquid glass background - Footer inspired */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(255, 255, 255, 0.12) 50%,
+        rgba(255, 255, 255, 0.18) 100%
+    );
+    backdrop-filter: blur(24px) saturate(180%) brightness(1.15);
+    -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.15);
+    
+    border-radius: 32px;
+    border: 2px solid rgba(218, 165, 32, 0.35);
+    
+    /* Multi-layer shadow for depth - Footer style */
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 2px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -2px 0 rgba(255, 255, 255, 0.15);
+    
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    
+    /* Performance optimization */
+    will-change: transform, box-shadow, backdrop-filter;
+    transform: translateZ(0);
+}
+
+/* Animated glow border effect - Footer style */
+.liquid-glass-image-container::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 32px;
+    padding: 3px;
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.5),
+        rgba(255, 107, 53, 0.5),
+        rgba(2, 136, 209, 0.3),
+        rgba(218, 165, 32, 0.5)
+    );
+    background-size: 200% 200%;
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0.6;
+    pointer-events: none;
+    animation: liquid-glow-flow 4s ease-in-out infinite;
+}
+
+@keyframes liquid-glow-flow {
+    0%, 100% {
+        background-position: 0% 50%;
+        opacity: 0.5;
+    }
+    50% {
+        background-position: 100% 50%;
+        opacity: 0.8;
+    }
+}
+
+/* Shimmer effect overlay */
+.liquid-glass-image-container::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 70%
+    );
+    animation: liquid-shimmer 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes liquid-shimmer {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+/* Image inside the container */
+.liquid-glass-image-container img {
+    position: relative;
+    z-index: 2;
+    border-radius: 16px;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effects */
+.liquid-glass-image-container:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.28) 0%,
+        rgba(255, 255, 255, 0.18) 50%,
+        rgba(255, 255, 255, 0.25) 100%
+    );
+    border-color: rgba(218, 165, 32, 0.6);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 20px 60px rgba(218, 165, 32, 0.25),
+        0 8px 20px rgba(218, 165, 32, 0.2),
+        inset 0 2px 0 rgba(255, 255, 255, 0.45),
+        inset 0 -2px 0 rgba(255, 255, 255, 0.2);
+}
+
+.liquid-glass-image-container:hover::before {
+    opacity: 0.9;
+    animation: liquid-glow-flow 2s ease-in-out infinite;
+}
+
+.liquid-glass-image-container:hover img {
+    transform: scale(1.03);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode support */
+body.dark-mode .liquid-glass-image-container {
+    background: linear-gradient(
+        135deg,
+        rgba(60, 60, 60, 0.4) 0%,
+        rgba(50, 50, 50, 0.3) 50%,
+        rgba(55, 55, 55, 0.35) 100%
+    );
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        inset 0 2px 0 rgba(255, 255, 255, 0.15),
+        inset 0 -2px 0 rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .liquid-glass-image-container::before {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 215, 0, 0.4),
+        rgba(120, 80, 200, 0.4),
+        rgba(30, 60, 150, 0.3),
+        rgba(255, 215, 0, 0.4)
+    );
+}
+
+body.dark-mode .liquid-glass-image-container:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(70, 70, 70, 0.5) 0%,
+        rgba(60, 60, 60, 0.4) 50%,
+        rgba(65, 65, 65, 0.45) 100%
+    );
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 
+        0 20px 60px rgba(255, 215, 0, 0.2),
+        0 8px 20px rgba(255, 215, 0, 0.15),
+        inset 0 2px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -2px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .liquid-glass-image-container {
+        padding: 16px;
+        border-radius: 24px;
+        backdrop-filter: blur(16px) saturate(150%);
+        -webkit-backdrop-filter: blur(16px) saturate(150%);
+    }
+    
+    .liquid-glass-image-container::before {
+        border-radius: 24px;
+        animation: liquid-glow-flow 5s ease-in-out infinite;
+    }
+    
+    .liquid-glass-image-container img {
+        border-radius: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .liquid-glass-image-container {
+        padding: 12px;
+        border-radius: 20px;
+        backdrop-filter: blur(12px) saturate(140%);
+        -webkit-backdrop-filter: blur(12px) saturate(140%);
+    }
+    
+    .liquid-glass-image-container::before {
+        border-radius: 20px;
+        /* Disable animation on small screens for performance */
+        animation: none;
+    }
+    
+    .liquid-glass-image-container::after {
+        /* Disable shimmer on small screens for performance */
+        animation: none;
+    }
+    
+    .liquid-glass-image-container img {
+        border-radius: 10px;
+    }
+    
+    /* Reduce hover effects on mobile */
+    .liquid-glass-image-container:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+}
+
+/* ========================================
+   TRAVEL STORIES SECTION - GLASSMORPHISM CARDS
+   Reference: Footer glassmorphism design 2025
+   ======================================== */
+
+.travel-stories-section {
+    padding: 80px 0;
+    background: var(--bg-primary);
+    position: relative;
+    overflow: visible; /* 允许卡片3D效果突破section边界 */
+    transition: background-color 0.3s ease;
+}
+
+/* 为卡片容器添加额外空间，防止3D效果被裁剪 */
+.travel-stories-section .row {
+    overflow: visible;
+    padding: 2rem 0;
+}
+
+.travel-stories-section .col-lg-6 {
+    overflow: visible;
+    padding-bottom: 3rem;
+}
+
+.travel-stories-section .container {
+    position: relative;
+    z-index: 2;
+    overflow: visible; /* 确保容器不裁剪3D效果 */
+}
+
+.travel-stories-section h2 {
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.travel-stories-section .lead {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    transition: color 0.3s ease;
+}
+
+.travel-stories-section hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    width: 80px;
+    margin: 0 auto 3rem auto;
+}
+
+/* Enhanced Card with Glassmorphism - 2025 Best Practices */
+.travel-stories-section .card {
+    position: relative;
+    overflow: visible; /* 允许图片突破边框 */
+    z-index: 1; /* 默认z-index */
+    
+    /* Premium glassmorphism effect - Footer inspired */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.08) 50%,
+        rgba(255, 255, 255, 0.12) 100%
+    );
+    backdrop-filter: blur(20px) saturate(150%) contrast(1.1);
+    -webkit-backdrop-filter: blur(20px) saturate(150%) contrast(1.1);
+    
+    /* Enhanced border and shadow for depth - Footer style */
+    border-radius: 24px;
+    border: 1px solid rgba(218, 165, 32, 0.25);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+    
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* 3D效果支持 - 让图片能够突破边框 */
+    transform-style: preserve-3d;
+    
+    /* Performance optimization */
+    will-change: transform, box-shadow, backdrop-filter;
+    transform: translateZ(0);
+}
+
+/* Hover时提升z-index，防止被相邻卡片遮挡 */
+.travel-stories-section .card:hover,
+.travel-stories-section .card.tilt-active,
+.travel-stories-section .card:has(.js-tilt-glare),
+.travel-stories-section .card:has([data-tilt]:hover) {
+    z-index: 100; /* hover或tilt时提升到最上层 */
+}
+
+/* Subtle glow effect around cards - Footer style */
+.travel-stories-section .card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 24px;
+    padding: 2px;
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.3),
+        rgba(255, 107, 53, 0.3),
+        rgba(218, 165, 32, 0.3)
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    animation: glow-pulse 3s ease-in-out infinite;
+    animation-play-state: paused;
+}
+
+@keyframes card-glow-pulse {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Card Image with rounded corners matching the card */
+.travel-stories-section .card-img-top {
+    border-radius: 24px 24px 0 0;
+    height: 250px;
+    object-fit: cover;
+    position: relative;
+    z-index: 10; /* 确保图片在最上层 */
+    transform-style: preserve-3d;
+    transform: translateZ(30px); /* 图片向前移动，增强3D效果 */
+    transition: all 0.3s ease;
+}
+
+/* Tilt效果激活时增强图片效果 */
+.travel-stories-section .card-img-top.js-tilt-glare {
+    transform: translateZ(40px); /* tilt时图片更突出 */
+}
+
+/* Card Body */
+.travel-stories-section .card-body {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+    overflow: visible; /* 允许内容自然显示 */
+    
+    /* Enhanced background for better text readability */
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.92) 100%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 0 0 24px 24px; /* 确保底部圆角 */
+}
+
+.travel-stories-section .card-title {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.travel-stories-section .card-text {
+    color: #5a6c7d;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* Ensure small text is visible */
+.travel-stories-section .text-muted {
+    color: #6c757d !important;
+}
+
+/* Map pin icon alignment - 让图标底部与文字底部对齐 */
+.travel-stories-section .card-body small i[data-lucide="map-pin"] {
+    display: inline-block;
+    vertical-align: baseline;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+}
+
+/* Badge styling */
+.travel-stories-section .badge {
+    border-radius: 12px;
+    padding: 0.4rem 0.8rem;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.travel-stories-section .badge.bg-primary {
+    background-color: #0d6efd !important;
+    color: white;
+}
+
+.travel-stories-section .badge.bg-success {
+    background-color: #198754 !important;
+    color: white;
+}
+
+.travel-stories-section .badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529;
+}
+
+.travel-stories-section .badge.bg-info {
+    background-color: #0dcaf0 !important;
+    color: #212529;
+}
+
+/* Button styling with glassmorphism - 参考backToTop设计 */
+.travel-stories-section .btn-outline-primary {
+    /* 液态玻璃背景 - 与回到顶部按钮相同的设计 */
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.16) 0%,
+        rgba(255, 255, 255, 0.10) 60%,
+        rgba(255, 255, 255, 0.18) 100%),
+        radial-gradient(120% 120% at 20% 10%, rgba(218, 165, 32, 0.25), rgba(218, 165, 32, 0));
+    backdrop-filter: blur(18px) saturate(160%) brightness(1.08);
+    -webkit-backdrop-filter: blur(18px) saturate(160%) brightness(1.08);
+    
+    /* 24px圆角 - 与Footer统一 */
+    border-radius: 24px;
+    border: 1px solid rgba(218, 165, 32, 0.45);
+    color: var(--accent-color);
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, backdrop-filter;
+    transform: translateZ(0);
+}
+
+.travel-stories-section .btn-outline-primary:hover {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.20) 0%,
+        rgba(255, 255, 255, 0.14) 60%,
+        rgba(255, 255, 255, 0.22) 100%),
+        radial-gradient(120% 120% at 20% 10%, rgba(218, 165, 32, 0.35), rgba(218, 165, 32, 0));
+    color: #DAA520;
+    border-color: rgba(218, 165, 32, 0.7);
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* Primary CTA Button - 液态玻璃设计 */
+.travel-stories-section .btn-primary {
+    /* 高级液态玻璃背景 */
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.20) 0%,
+        rgba(255, 255, 255, 0.12) 60%,
+        rgba(255, 255, 255, 0.22) 100%),
+        radial-gradient(120% 120% at 20% 10%, rgba(218, 165, 32, 0.35), rgba(255, 107, 53, 0.15));
+    backdrop-filter: blur(20px) saturate(170%) brightness(1.1);
+    -webkit-backdrop-filter: blur(20px) saturate(170%) brightness(1.1);
+    
+    /* 24px圆角 - 统一设计 */
+    border-radius: 24px;
+    border: 1px solid rgba(218, 165, 32, 0.5);
+    padding: 1rem 2.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #DAA520;
+    
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, backdrop-filter;
+    transform: translateZ(0);
+    
+    position: relative;
+    overflow: hidden;
+}
+
+.travel-stories-section .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    transition: transform 0.6s ease;
+}
+
+.travel-stories-section .btn-primary:hover {
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.24) 0%,
+        rgba(255, 255, 255, 0.16) 60%,
+        rgba(255, 255, 255, 0.26) 100%),
+        radial-gradient(120% 120% at 20% 10%, rgba(218, 165, 32, 0.45), rgba(255, 107, 53, 0.25));
+    border-color: rgba(218, 165, 32, 0.75);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.travel-stories-section .btn-primary:hover::before {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+
+/* Dark Mode Support for Travel Stories */
+body.dark-mode .travel-stories-section .card {
+    background: linear-gradient(
+        135deg,
+        rgba(40, 40, 40, 0.35) 0%,
+        rgba(30, 30, 30, 0.25) 50%,
+        rgba(35, 35, 35, 0.3) 100%
+    );
+    backdrop-filter: blur(24px) saturate(180%) contrast(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .travel-stories-section .card-body {
+    background: linear-gradient(
+        180deg,
+        rgba(30, 30, 30, 0.9) 0%,
+        rgba(20, 20, 20, 0.85) 100%
+    );
+}
+
+body.dark-mode .travel-stories-section .card-title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .travel-stories-section .card-text {
+    color: #b0b0b0;
+}
+
+body.dark-mode .travel-stories-section .text-muted {
+    color: #999 !important;
+}
+
+/* Dark Mode Support for Travel Stories Buttons - 24px圆角 */
+body.dark-mode .travel-stories-section .btn-outline-primary {
+    background: linear-gradient(135deg,
+        rgba(20, 20, 20, 0.50) 0%,
+        rgba(10, 10, 10, 0.40) 60%,
+        rgba(25, 25, 25, 0.53) 100%),
+        radial-gradient(120% 120% at 20% 10%, rgba(218, 165, 32, 0.22), rgba(218, 165, 32, 0));
+    backdrop-filter: blur(18px) saturate(150%) brightness(1.12);
+    -webkit-backdrop-filter: blur(18px) saturate(150%) brightness(1.12);
+    
+    border-radius: 24px;
+    border: 1px solid rgba(255, 215, 0, 0.45);
+    color: rgba(255, 215, 0, 0.9);
+}
+
+body.dark-mode .travel-stories-section .btn-outline-primary:hover {
+    background: linear-gradient(135deg,
+        rgba(30, 30, 30, 0.55) 0%,
+        rgba(20, 20, 20, 0.45) 60%,
+        rgba(35, 35, 35, 0.58) 100%),
+        radial-gradient(120% 120% at 20% 10%, rgba(218, 165, 32, 0.32), rgba(218, 165, 32, 0));
+    color: rgba(255, 215, 0, 1);
+    border-color: rgba(255, 215, 0, 0.7);
+}
+
+body.dark-mode .travel-stories-section .btn-primary {
+    background: linear-gradient(135deg,
+        rgba(20, 20, 20, 0.55) 0%,
+        rgba(10, 10, 10, 0.45) 60%,
+        rgba(25, 25, 25, 0.58) 100%),
+        radial-gradient(120% 120% at 20% 10%, rgba(218, 165, 32, 0.28), rgba(138, 43, 226, 0.1));
+    backdrop-filter: blur(20px) saturate(155%) brightness(1.15);
+    -webkit-backdrop-filter: blur(20px) saturate(155%) brightness(1.15);
+    
+    border-radius: 24px;
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    color: rgba(255, 215, 0, 0.95);
+}
+
+body.dark-mode .travel-stories-section .btn-primary:hover {
+    background: linear-gradient(135deg,
+        rgba(30, 30, 30, 0.60) 0%,
+        rgba(20, 20, 20, 0.50) 60%,
+        rgba(35, 35, 35, 0.63) 100%),
+        radial-gradient(120% 120% at 20% 10%, rgba(218, 165, 32, 0.38), rgba(138, 43, 226, 0.15));
+    color: rgba(255, 215, 0, 1);
+    border-color: rgba(255, 215, 0, 0.75);
+}
+
+/* Dark Mode Support for Services */
+body.dark-mode .services-3d-box {
+    background: linear-gradient(
+        135deg,
+        rgba(40, 40, 40, 0.35) 0%,
+        rgba(30, 30, 30, 0.25) 50%,
+        rgba(35, 35, 35, 0.3) 100%
+    );
+    backdrop-filter: blur(24px) saturate(180%) contrast(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(180%) contrast(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .service-content p {
+    color: #e0e0e0; /* 亮色文字，暗黑模式下可见 */
+}
+
+/* Dark Mode for Hero Carousel - No background needed */
+body.dark-mode .carousel-caption {
+    /* Keep text styling only, no background */
+    background: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none;
+    box-shadow: none;
+}
+
+.destinations-section {
+    padding: 80px 0;
+    background: var(--bg-secondary);
+    background-repeat: repeat;
+    background-size: 300px 300px;
+    position: relative;
+    transition: background-color 0.3s ease;
+    overflow: hidden;
+}
+
+.destinations-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.destinations-section .title {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.destinations-section .title p {
+    font-size: 2.5rem;
+    font-weight: 800;
+    white-space: nowrap;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.destinations-section h1 {
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    transition: color 0.3s ease;
+}
+
+.destinations-section hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    width: 80px;
+    margin: 0 auto;
+}
+
+#banner {
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+    height: calc(var(--post-size) / 0.72);
+    /* SVG mask for elliptical shape */
+    mask: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDQwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDE0NDAgNTAwIiBpZD0iaiI+CiAgPHBhdGggZmlsbD0icmdiKDIwMCwyMDAsMjAwKSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMCAwczI3NS4wNCAxMDAgNzIwIDEwMFMxNDQwIDAgMTQ0MCAwdjUwMHMtMjc1LjA0LTEwMC03MjAtMTAwUzAgNTAwIDAgNTAwVjB6Ii8+Cjwvc3ZnPgo=);
+    -webkit-mask: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDQwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDE0NDAgNTAwIiBpZD0iaiI+CiAgPHBhdGggZmlsbD0icmdiKDIwMCwyMDAsMjAwKSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMCAwczI3NS4wNCAxMDAgNzIwIDEwMFMxNDQwIDAgMTQ0MCAwdjUwMHMtMjc1LjA0LTEwMC03MjAtMTAwUzAgNTAwIDAgNTAwVjB6Ii8+Cjwvc3ZnPgo=);
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+    mask-size: var(--mask-size);
+    -webkit-mask-size: var(--mask-size);
+    margin: 4rem auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#banner .img-wrapper {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    float: left;
+    height: calc(var(--post-size) / 0.72);
+    /* 初始位置：显示第一张真实图片（跳过第一张克隆图片） */
+    /* 50vw（视口中心）- 12.5vw（半个图片宽度）- 1个图片长度（跳过克隆图片） */
+    transition: transform 0.5s ease;
+}
+
+#banner .img-wrapper .img-box {
+    height: 100%;
+    display: inline-block;
+    margin-right: var(--post-spacing);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect for image boxes */
+#banner .img-wrapper .img-box:hover {
+    transform: scale(1.05);
+}
+
+#banner .img-wrapper .img-box .info {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--info-overlay);
+    text-align: center;
+    color: #fff9f1;
+    font-size: 2.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#banner .img-wrapper .img-box:hover .info {
+    opacity: 1;
+}
+
+#banner .img-wrapper .img-box .info h3 {
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+#banner .img-wrapper .img-box img {
+    width: var(--post-size);
+    height: 100%;
+    object-position: center;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 移除了旧的last-child特殊transform，现在使用克隆图片实现无缝循环 */
+
+.btn-group {
+  height: 15vh;
+  position: absolute;
+  left: 50%;
+  bottom: 0%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0;
+  display: flex;
+  gap: 20px; /* Space between buttons */
+  align-items: center;
+  z-index: 10;
+}
+
+.btn-group .btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  
+  /* 纯白色玻璃效果 - 简洁透明 */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  
+  /* 金色边框 - #DAA520 */
+  border: 1.5px solid rgba(218, 165, 32, 0.5);
+  margin: 0;
+  cursor: pointer;
+  -webkit-transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  
+  /* 简洁阴影 - 无高光 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  /* Performance optimization */
+  will-change: transform, box-shadow;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  position: relative;
+}
+
+/* Hover state - 简洁效果 */
+.btn-group .btn:hover {
+  -webkit-transform: translateY(-6px) scale(1.15);
+          transform: translateY(-6px) scale(1.15);
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(218, 165, 32, 0.7);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Active/Click state */
+.btn-group .btn:active {
+  -webkit-transform: translateY(-2px) scale(1.08);
+          transform: translateY(-2px) scale(1.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Icon styling - 金色箭头 #DAA520 */
+.btn-group .btn .icon {
+  width: 32px;
+  height: 32px;
+  fill: rgba(218, 165, 32, 0.9);
+  transition: all 0.35s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-group .btn:hover .icon {
+  fill: rgb(218, 165, 32);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+/* Right arrow rotation */
+.btn-group .btn .right {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+/* Animate icon on hover for right arrow */
+.btn-group .btn:hover .right {
+  -webkit-transform: rotate(180deg) scale(1.1) translateX(-2px);
+          transform: rotate(180deg) scale(1.1) translateX(-2px);
+}
+
+/* Animate icon on hover for left arrow */
+.btn-group .btn:hover .left {
+  -webkit-transform: scale(1.1) translateX(-2px);
+          transform: scale(1.1) translateX(-2px);
+}
+
+.img-list {
+  left: 0;
+}
+
+/* 移除admission动画，初始位置由JavaScript控制 */
+
+.services-section {
+    padding: 80px 0;
+    background: var(--bg-primary);
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.services-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 1px 1px, var(--hover-overlay) 1px, transparent 0);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.services-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.services-section header {
+    margin-bottom: 3rem;
+}
+
+.services-section h2 {
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.services-section .lead {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+    transition: color 0.3s ease;
+}
+
+.services-section hr {
+    border: none;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    width: 80px !important;
+    margin: 0 auto;
+}
+
+.services-3d-shell {
+    display: grid;
+    gap: 2rem;
+    max-width: var(--container-xl);
+    margin: 0 auto;
+    padding: 0 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+
+.services-3d-box {
+    position: relative;
+    height: 280px;
+    
+    /* Premium glassmorphism effect - Footer inspired */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.08) 50%,
+        rgba(255, 255, 255, 0.12) 100%
+    );
+    backdrop-filter: blur(20px) saturate(150%) contrast(1.1);
+    -webkit-backdrop-filter: blur(20px) saturate(150%) contrast(1.1);
+    
+    /* Rounded corners matching footer - 24px */
+    border-radius: 24px;
+    border: 1px solid rgba(218, 165, 32, 0.25);
+    
+    /* Multi-layer shadow for depth - Footer style */
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+    
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    
+    /* Performance optimization */
+    will-change: transform, box-shadow, backdrop-filter;
+    transform: translateZ(0);
+}
+
+.services-3d-shell:hover .services-3d-box:not(:hover) {
+    transform: rotateY(15deg) scale(0.95);
+    opacity: 0.7;
+}
+
+/* Glow effect border - Footer style */
+.services-3d-box::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 24px;
+    padding: 2px;
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.3),
+        rgba(255, 107, 53, 0.3),
+        rgba(218, 165, 32, 0.3)
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    animation: service-glow-pulse 3s ease-in-out infinite;
+    animation-play-state: paused;
+}
+
+@keyframes service-glow-pulse {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.services-3d-box:hover {
+    transform: rotateY(0deg) scale(1.05) translateZ(20px);
+    
+    /* Enhanced shadow on hover */
+    box-shadow: 
+        0 12px 40px rgba(218, 165, 32, 0.2),
+        0 4px 12px rgba(218, 165, 32, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 0 3px rgba(218, 165, 32, 0.15);
+    
+    border-color: rgba(218, 165, 32, 0.6);
+    z-index: 10;
+}
+
+.services-3d-box:hover::before {
+    opacity: 0.6;
+    animation: service-glow-pulse 3s ease-in-out infinite;
+}
+
+.service-images {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* 底部对齐，让图标下移 */
+    height: 120px;
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+    transition: background 0.3s ease;
+    padding-bottom: 15px; /* 图标距离底部15px */
+}
+
+.service-images svg,
+.service-images i {
+    width: 60px;
+    height: 60px;
+    color: var(--accent-color);
+    stroke: var(--accent-color); /* Lucide图标使用stroke */
+    stroke-width: 2; /* 设置统一的线条宽度 */
+    fill: none; /* Lucide图标不使用fill */
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 8px rgba(218, 165, 32, 0.2));
+    display: block;
+    flex-shrink: 0;
+    transform-origin: center center; /* 从中心点旋转和缩放 */
+}
+
+.services-3d-box:hover .service-images svg,
+.services-3d-box:hover .service-images i {
+    transform: scale(1.2) rotateY(360deg);
+    transform-origin: center center; /* 保持中心点旋转 */
+    color: var(--text-color);
+    stroke: var(--text-color); /* Hover时stroke也改变 */
+}
+
+.service-content {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+    height: calc(100% - 120px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.service-content h2 {
+    color: var(--text-color);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.service-content p {
+    color: #2c3e50; /* 深色文字，确保可见 */
+    font-size: 0.9rem;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+}
+
+.services-3d-box:hover .service-content h2 {
+    color: var(--accent-color);
+    transform: translateY(-5px);
+}
+
+.services-3d-box:hover .service-content p {
+    color: var(--text-color);
+    transform: translateY(5px);
+}
+
+@media (max-width: 992px) {
+    .services-3d-shell {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-3d-shell {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .services-3d-box {
+        height: 280px;
+    }
+    
+    .service-content {
+        padding: 130px 1rem 1rem;
+    }
+    
+    .services-3d-box:hover .service-content {
+        padding-top: 150px;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .services-3d-shell {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+    
+    .services-3d-box {
+        height: 300px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .services-3d-shell {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .services-3d-box {
+        height: 250px;
+    }
+    
+    .service-content h2 {
+        font-size: 1.1rem;
+    }
+    
+    .service-content p {
+        font-size: 0.85rem;
+    }
+    
+    .c-hero__flickity {
+        height: 350px;
+    }
+    
+    .c-hero__carousel {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 767px) {
+    .travel-stories-section {
+        padding: 40px 0;
+        margin-top: 0;
+    }
+    
+    .services-section {
+        padding: 60px 0;
+    }
+    
+    .services-3d-shell {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        gap: 1rem;
+        padding: 0 1rem;
+        perspective: none;
+    }
+    
+    .services-3d-box {
+        height: 200px;
+        transform: none !important;
+    }
+    
+    .services-3d-shell:hover .services-3d-box:not(:hover) {
+        transform: none;
+        opacity: 1;
+    }
+    
+    .services-3d-box:hover {
+        transform: translateY(-5px) !important;
+        box-shadow: var(--shadow-lg);
+    }
+    
+    .service-images {
+        height: 80px;
+    }
+    
+    .service-images svg,
+    .service-images i {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .service-content {
+        padding: 1rem;
+        height: calc(100% - 80px);
+    }
+    
+    .service-content h2 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .service-content p {
+        font-size: 0.8rem;
+    }
+    
+    .destinations-section {
+        padding: 60px 0;
+    }
+    
+    .c-hero__carousel {
+        padding: 0 20px;
+        margin: 2rem 0;
+    }
+    
+    .c-hero__flickity {
+        height: 250px;
+    }
+    
+    .c-button {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .c-hero__post-textwrap {
+        padding: 1.5rem;
+    }
+    
+    .u-font-h3 {
+        font-size: 1.3rem;
+    }
+    
+    .u-font-sm {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* ========================================
+       MOBILE PERFORMANCE OPTIMIZATION
+       Reduce blur intensity for better mobile performance
+       Reference: Footer responsive optimization
+       ======================================== */
+    
+    /* Travel Stories Cards - Reduced blur */
+    .travel-stories-section .card {
+        backdrop-filter: blur(12px) saturate(130%);
+        -webkit-backdrop-filter: blur(12px) saturate(130%);
+    }
+    
+    .travel-stories-section .card-body {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+    
+    /* Services 3D Boxes - Reduced blur */
+    .services-3d-box {
+        backdrop-filter: blur(12px) saturate(130%);
+        -webkit-backdrop-filter: blur(12px) saturate(130%);
+    }
+    
+    /* Hero Carousel Caption - Tablet optimization */
+    .carousel-caption {
+        padding: 1.2rem 2rem !important;
+        bottom: 40% !important;
+        max-width: 550px;
+    }
+    
+    .carousel-caption h3 {
+        font-size: 1.6rem;
+        margin-bottom: 0.6rem;
+        white-space: nowrap;
+        overflow: visible;
+        text-overflow: unset;
+        max-width: none;
+    }
+    
+    /* Arabic font support for tablet */
+    html:lang(ar) .carousel-caption h3 {
+        font-family: 'Noto Sans Arabic', 'Noto Sans', 'Segoe UI', sans-serif;
+    }
+    
+    .carousel-caption .custom-paragraph {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    /* Destination Buttons - Reduced blur */
+    .btn-group .btn {
+        width: 56px;
+        height: 56px;
+        backdrop-filter: blur(16px) saturate(140%);
+        -webkit-backdrop-filter: blur(16px) saturate(140%);
+    }
+    
+    .btn-group .btn .icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    /* Carousel Controls - Reduced blur */
+    .carousel-control-prev,
+    .carousel-control-next {
+        backdrop-filter: blur(10px) saturate(130%);
+        -webkit-backdrop-filter: blur(10px) saturate(130%);
+    }
+}
+
+@media (max-width: 480px) {
+    /* ========================================
+       EXTRA SMALL SCREENS - FURTHER OPTIMIZATION
+       Minimum blur for best performance on small devices
+       ======================================== */
+    
+    .services-section h2 {
+        font-size: 2rem;
+    }
+    
+    .services-section .lead {
+        font-size: 1rem;
+    }
+    
+    .services-3d-box {
+        height: 180px;
+        backdrop-filter: blur(10px) saturate(120%);
+        -webkit-backdrop-filter: blur(10px) saturate(120%);
+    }
+    
+    /* Travel Stories Cards - Minimum blur */
+    .travel-stories-section .card {
+        backdrop-filter: blur(10px) saturate(120%);
+        -webkit-backdrop-filter: blur(10px) saturate(120%);
+    }
+    
+    .travel-stories-section .card-body {
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+    }
+    
+    /* Hero Carousel Caption - Mobile optimization */
+    .carousel-caption {
+        padding: 1rem 1.5rem !important;
+        bottom: 20% !important;
+        max-width: 90%;
+    }
+    
+    .carousel-caption h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: visible;
+        text-overflow: unset;
+        max-width: none;
+    }
+    
+    /* Arabic font support for mobile */
+    html:lang(ar) .carousel-caption h3 {
+        font-family: 'Noto Sans Arabic', 'Noto Sans', 'Segoe UI', sans-serif;
+    }
+    
+    .carousel-caption .custom-paragraph {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    /* Disable glow animations on small screens for performance */
+    .travel-stories-section .card::before,
+    .services-3d-box::before {
+        animation: none;
+    }
+    
+    .c-hero__flickity {
+        height: 200px;
+        border-radius: 12px;
+    }
+    
+    .c-hero__post-textwrap {
+        padding: 1rem;
+    }
+    
+    .u-font-h3 {
+        font-size: 1.1rem;
+    }
+    
+    .u-font-sm {
+        font-size: 0.8rem;
+    }
+}

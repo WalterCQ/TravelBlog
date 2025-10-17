@@ -1,0 +1,39 @@
+# Production Environment Configuration
+spring:
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        use_sql_comments: false
+
+logging:
+  level:
+    root: WARN
+    com.example.travelblog: INFO
+    org.springframework.web: WARN
+    org.hibernate.SQL: WARN
+
+server:
+  compression:
+    enabled: true
+  servlet:
+    session:
+      cookie:
+        secure: true
+        http-only: true
+  error:
+    include-stacktrace: never
+    include-exception: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,prometheus
+  endpoint:
+    health:
+      show-details: never
+
+
+

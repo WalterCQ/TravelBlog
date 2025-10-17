@@ -1,0 +1,2415 @@
+/**
+ * ============================================================================
+ * Navigation Bar - Liquid Glass Edition
+ * ============================================================================
+ * 
+ * Based on Apple Liquid Glass design language for new navigation bar
+ * 
+ * Core features:
+ * - Dynamic transparency response
+ * - Real-time refraction effects
+ * - Deformation animation on scroll
+ * - Homepage special transparency effects
+ * 
+ * Created: October 10, 2025
+ * ============================================================================
+ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ==================== Navigation Bar Base Styles ==================== */
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    
+    /* Completely transparent background */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    
+    /* Border and shadow */
+    border: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+    box-shadow: none !important;
+    
+    /* Animation and performance optimization (only transition displacement to avoid first-frame flicker on background switch) */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+    will-change: backdrop-filter, transform, background;
+    
+    margin: 0 !important;
+    padding: 0.5rem 0 !important;
+}
+
+/* GPU warm-up: pre-initialize backdrop-filter pipeline offscreen to avoid first-frame flicker */
+.navbar::after {
+    content: '';
+    position: fixed;
+    top: -9999px;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(var(--glass-blur-3xl))
+                     saturate(var(--glass-saturate-ultra))
+                     brightness(1.08)
+                     contrast(1.1);
+    -webkit-backdrop-filter: blur(var(--glass-blur-3xl))
+                              saturate(var(--glass-saturate-ultra))
+                              brightness(1.08)
+                              contrast(1.1);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Homepage navigation bar - reduce side margins */
+/* More compact side margins for navigation bar (override .px-4) */
+.homepage .navbar .container,
+.navbar .container,
+.navbar .container.px-4 { padding-left: 0.5rem !important; padding-right: 0.5rem !important; }
+
+/* Expand site-wide container max-width to reduce left-right margins (reference destinations page) */
+@media (min-width: 1400px) {
+    .container,
+    .container.px-4 {
+        max-width: 1500px !important;
+    }
+    
+    /* Mega菜单与导航栏容器宽度保持一致 */
+    .mega-menu {
+        max-width: 1500px !important;
+    }
+}
+
+@media (min-width: 1600px) {
+    .container,
+    .container.px-4 {
+        max-width: 1650px !important;
+    }
+    
+    /* Mega菜单与导航栏容器宽度保持一致 */
+    .mega-menu {
+        max-width: 1650px !important;
+    }
+}
+
+/* 有视频页面（首页、目的地、套餐、帮助中心）也完全透明 */
+.homepage .navbar,
+.destinations-page .navbar,
+.packages-page .navbar,
+.help-page .navbar {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+/* ==================== Scroll States ==================== */
+
+.navbar.navbar-scrolled {
+    transform: translateY(-100%);
+}
+
+.navbar.navbar-visible {
+    transform: translateY(0);
+}
+
+.navbar-hidden {
+    transform: translateY(-100%) !important;
+}
+
+.navbar-visible {
+    transform: translateY(0) !important;
+}
+
+/* ==================== Post-scroll Liquid Glass Navigation Bar - Latest 2025 Design ==================== */
+
+/* Ultra-strong liquid glass effect - non-top state */
+.navbar.navbar-scrolled-visible {
+    position: fixed !important;
+    
+    /* Unified background - completely consistent with menu below */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    
+    /* Enhanced liquid glass filter combination */
+    backdrop-filter: blur(var(--glass-blur-3xl)) 
+                     saturate(var(--glass-saturate-ultra)) 
+                     brightness(1.08)
+                     contrast(1.1) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-3xl)) 
+                              saturate(var(--glass-saturate-ultra)) 
+                              brightness(1.08)
+                              contrast(1.1) !important;
+    
+    /* Remove dividing shadows and glow lines */
+    box-shadow: none !important;
+    
+    /* Remove bottom border for seamless connection with sub-navigation bar */
+    border-bottom: none;
+    
+    /* Smooth transition */
+    transform: translateY(0);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* GPU acceleration */
+    will-change: backdrop-filter, transform, box-shadow;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* ==================== Fixed White Navigation (Non-whitelist Pages) ==================== */
+/* Except homepage, destinations, packages pages, show white background black text navigation at top */
+body.solid-navbar .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    backdrop-filter: blur(var(--glass-blur-3xl)) 
+                     saturate(var(--glass-saturate-ultra)) 
+                     brightness(1.08)
+                     contrast(1.1) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-3xl)) 
+                              saturate(var(--glass-saturate-ultra)) 
+                              brightness(1.08)
+                              contrast(1.1) !important;
+
+    border-bottom: none !important;
+    box-shadow: none !important;
+    transform: translateY(0) !important;
+}
+
+/* SSR guarantee: detail pages server-side render white background black text directly to avoid first-screen transparency */
+.navbar.navbar-initial-solid {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    backdrop-filter: blur(var(--glass-blur-3xl)) 
+                     saturate(var(--glass-saturate-ultra)) 
+                     brightness(1.08)
+                     contrast(1.1) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-3xl)) 
+                              saturate(var(--glass-saturate-ultra)) 
+                              brightness(1.08)
+                              contrast(1.1) !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+}
+
+.navbar.navbar-initial-solid .nav-link { color: #2c3e50 !important; }
+.navbar.navbar-initial-solid .nav-link:hover { color: #DAA520 !important; }
+.navbar.navbar-initial-solid .navbar-brand span:first-of-type { color: #000 !important; }
+.navbar.navbar-initial-solid .search-wrapper .form-control { color: #2c3e50; }
+.navbar.navbar-initial-solid .search-wrapper .form-control::placeholder { color: #6c757d; }
+
+body.solid-navbar .navbar .nav-link {
+    color: #2c3e50 !important;
+    text-shadow: none;
+}
+
+body.solid-navbar .navbar .nav-link:hover {
+    color: #DAA520 !important;
+}
+
+body.solid-navbar .navbar-brand span:first-of-type {
+    color: black !important;
+    text-shadow: none;
+}
+
+body.solid-navbar .search-wrapper .form-control {
+    color: #2c3e50;
+}
+
+body.solid-navbar .search-wrapper .form-control::placeholder {
+    color: #6c757d;
+}
+
+/* Hover时保持白底一致风格 */
+body.solid-navbar .navbar:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    backdrop-filter: blur(var(--glass-blur-3xl)) 
+                     saturate(var(--glass-saturate-ultra)) 
+                     brightness(1.08)
+                     contrast(1.1) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-3xl)) 
+                              saturate(var(--glass-saturate-ultra)) 
+                              brightness(1.08)
+                              contrast(1.1) !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+}
+
+/* Completely remove pseudo-elements that create dividing/glow lines */
+/* Completely remove pseudo-elements to avoid dividing/glow lines */
+.navbar.navbar-scrolled-visible::before,
+.navbar.navbar-scrolled-visible::after,
+.navbar.navbar-scrolled-visible:hover::after { content: none !important; }
+
+/* Post-scroll navigation bar - black text */
+.navbar.navbar-scrolled-visible .nav-link {
+    color: #2c3e50 !important;
+    text-shadow: none;
+}
+
+.navbar.navbar-scrolled-visible .navbar-brand span:first-of-type {
+    color: black !important;
+    text-shadow: none;
+}
+
+.navbar.navbar-scrolled-visible .btn-search {
+    color: #DAA520 !important;
+}
+
+.navbar.navbar-scrolled-visible .search-wrapper .form-control {
+    color: #2c3e50;
+}
+
+.navbar.navbar-scrolled-visible .search-wrapper .form-control::placeholder {
+    color: #6c757d;
+}
+
+/* Hover state - show semi-transparent background */
+.navbar:hover {
+    /* Keep completely consistent with scroll-visible state to avoid inconsistency with sub-navigation bar */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    backdrop-filter: blur(var(--glass-blur-3xl)) 
+                     saturate(var(--glass-saturate-ultra)) 
+                     brightness(1.08)
+                     contrast(1.1) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-3xl)) 
+                              saturate(var(--glass-saturate-ultra)) 
+                              brightness(1.08)
+                              contrast(1.1) !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+}
+
+/* 有视频页面：hover时显示半透明背景 */
+.homepage .navbar:hover,
+.destinations-page .navbar:hover,
+.packages-page .navbar:hover,
+.help-page .navbar:hover {
+    /* 与滚动状态保持一致 */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    backdrop-filter: blur(var(--glass-blur-3xl)) 
+                     saturate(var(--glass-saturate-ultra)) 
+                     brightness(1.08)
+                     contrast(1.1) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-3xl)) 
+                              saturate(var(--glass-saturate-ultra)) 
+                              brightness(1.08)
+                              contrast(1.1) !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+}
+
+/* ==================== Brand Logo ==================== */
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.navbar-brand img {
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    height: 50px !important;
+}
+
+/* 有视频页面：导航栏logo增强阴影 */
+.homepage .navbar:not(.navbar-scrolled-visible):not(:hover) .navbar-brand img,
+.destinations-page .navbar:not(.navbar-scrolled-visible):not(:hover) .navbar-brand img,
+.packages-page .navbar:not(.navbar-scrolled-visible):not(:hover) .navbar-brand img {
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+}
+
+.navbar-brand span:first-of-type {
+    color: white !important;
+    text-shadow: none;
+    transition: color 0.3s ease;
+}
+
+.navbar:hover .navbar-brand span:first-of-type {
+    color: black !important;
+    text-shadow: none;
+}
+
+.navbar-brand span:last-of-type {
+    color: #DAA520 !important;
+}
+
+/* ==================== Navigation Links - Glass Style ==================== */
+
+.navbar .nav-link {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    color: white !important;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-shadow: none;
+    transition: all 0.3s ease;
+    border-radius: 20px; /* Footer同款圆角 */
+    margin: 0 2px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    
+    /* 添加轻微玻璃效果 */
+    background: transparent;
+}
+
+/* 旧的整块下划线去除，避免受图标/内边距影响居中 */
+.navbar .nav-link::before { content: none !important; }
+
+/* 新的下划线：只围绕文字 span 居中绘制 */
+.navbar .nav-link > span { position: relative; display: inline-block; padding-bottom: 2px; }
+.navbar .nav-link > span::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -4px; /* 紧贴文字下方 */
+    width: 0;
+    height: 2px;
+    background: #DAA520;
+    border-radius: 2px;
+    transform: translateX(-50%);
+    transition: width 0.25s ease;
+}
+
+/* Hover时导航链接变深色 */
+.navbar:hover .nav-link {
+    color: #2c3e50 !important;
+    text-shadow: none;
+}
+
+.navbar .nav-link:hover {
+    color: #DAA520 !important;
+    background: transparent;
+}
+
+.navbar .nav-link:hover > span::after { width: 20px; }
+
+/* 链接hover时保持金色 */
+.navbar .nav-link:hover,
+.navbar:hover .nav-link:hover {
+    color: #DAA520 !important;
+    text-shadow: none;
+}
+
+/* Active链接 */
+.navbar .nav-link.active {
+    color: #DAA520 !important;
+    background: transparent;
+    text-shadow: none;
+}
+
+.navbar:hover .nav-link.active {
+    text-shadow: none;
+}
+
+.navbar .nav-link.active > span::after { width: 20px; }
+
+/* ==================== Dropdown Menu - Liquid Glass ==================== */
+
+.dropdown-icon {
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+/* Lucide下拉箭头垂直居中 */
+.dropdown-icon[data-lucide] {
+    display: inline-block;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+}
+
+.nav-item.dropdown.show .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    /* 统一采用语言选择器的背景样式 */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    backdrop-filter: blur(var(--glass-blur-xl)) 
+                     saturate(var(--glass-saturate-strong)) 
+                     brightness(1.08) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                              saturate(var(--glass-saturate-strong)) 
+                              brightness(1.08) !important;
+    
+    /* 移除边框并禁用过渡，避免首帧白色 */
+    border: none !important;
+    border-radius: 24px; /* Footer同款圆角 */
+    transition: none !important;
+    animation: none !important;
+    
+    /* 统一阴影效果 */
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+    
+    /* 减少间隙 */
+    margin-top: 8px;
+    padding: 8px; /* 与语言选择器一致 */
+    min-width: 220px;
+    z-index: 1050;
+    will-change: backdrop-filter, transform;
+    transform: translateZ(0);
+    contain: layout paint;
+    
+    /* 防止超出屏幕 - 2025优化 */
+    max-width: calc(100vw - 32px) !important;
+    position: absolute !important;
+}
+
+/* 右对齐下拉菜单 - 确保不超出屏幕 */
+.dropdown-menu-end {
+    right: 0 !important;
+    left: auto !important;
+}
+
+/* 小屏幕优化 - 确保下拉菜单完全可见 */
+@media (max-width: 576px) {
+    .dropdown-menu {
+        max-width: calc(100vw - 16px) !important;
+        min-width: 180px !important;
+    }
+    
+    .dropdown-menu-end {
+        right: 8px !important;
+    }
+}
+
+/* 有视频页面：下拉菜单样式 - 统一语言选择器背景 */
+.homepage .dropdown-menu,
+.destinations-page .dropdown-menu,
+.packages-page .dropdown-menu {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    
+    backdrop-filter: blur(var(--glass-blur-xl)) 
+                     saturate(var(--glass-saturate-strong)) 
+                     brightness(1.08) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                              saturate(var(--glass-saturate-strong)) 
+                              brightness(1.08) !important;
+    transition: none !important;
+    animation: none !important;
+    
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 导航栏hover时，普通下拉菜单也继承一致样式 */
+.navbar:hover .dropdown-menu {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    
+    backdrop-filter: blur(var(--glass-blur-xl)) 
+                     saturate(var(--glass-saturate-strong)) 
+                     brightness(1.08) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                              saturate(var(--glass-saturate-strong)) 
+                              brightness(1.08) !important;
+    transition: none !important;
+    animation: none !important;
+    
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.homepage .navbar:hover .dropdown-menu {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    
+    backdrop-filter: blur(var(--glass-blur-xl)) 
+                     saturate(var(--glass-saturate-strong)) 
+                     brightness(1.08) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                              saturate(var(--glass-saturate-strong)) 
+                              brightness(1.08) !important;
+    transition: none !important;
+    animation: none !important;
+    
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+.dropdown-header {
+    padding: 0.75rem 1rem 0.5rem;
+    margin-bottom: 0.5rem;
+    color: #6c757d;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dropdown-divider {
+    height: 0;
+    margin: 0.5rem 0;
+    overflow: hidden;
+    border-top: none;
+}
+
+/* ==================== Mega Dropdown ==================== */
+
+.mega-dropdown {
+    position: static;
+}
+
+.mega-menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    
+    /* 与导航栏容器宽度保持一致 */
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* 统一采用语言选择器的背景样式 */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    backdrop-filter: blur(var(--glass-blur-xl)) 
+                     saturate(var(--glass-saturate-strong)) 
+                     brightness(1.08) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                              saturate(var(--glass-saturate-strong)) 
+                              brightness(1.08) !important;
+    transition: none !important;
+    animation: none !important;
+    
+    /* 无缝连接 - 移除所有边框和圆角 */
+    border: none !important;
+    border-radius: 0 0 24px 24px;
+    
+    /* 移除阴影效果 */
+    box-shadow: none !important;
+    
+    /* 紧贴导航栏 - 无间隙 */
+    margin-top: 0 !important;
+    padding: 1rem 1.5rem; /* 左右更宽一些 */
+    z-index: 1049;
+    top: 100%;
+    will-change: backdrop-filter, transform;
+    transform: translateZ(0);
+    contain: layout paint;
+}
+
+/* 有视频页面：Mega菜单样式 - 统一语言选择器背景 */
+.homepage .mega-menu,
+.destinations-page .mega-menu,
+.packages-page .mega-menu {
+    /* 统一采用语言选择器的背景样式 */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    
+    /* 与语言选择器一致的毛玻璃效果 */
+    backdrop-filter: blur(var(--glass-blur-xl)) 
+                     saturate(var(--glass-saturate-strong)) 
+                     brightness(1.08) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                              saturate(var(--glass-saturate-strong)) 
+                              brightness(1.08) !important;
+    transition: none !important;
+    animation: none !important;
+    
+    box-shadow: none !important;
+}
+
+/* 导航栏hover时，下拉菜单继承相同样式 */
+.navbar:hover .mega-menu {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    
+    backdrop-filter: blur(var(--glass-blur-xl)) 
+                     saturate(var(--glass-saturate-strong)) 
+                     brightness(1.08) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                              saturate(var(--glass-saturate-strong)) 
+                              brightness(1.08) !important;
+    transition: none !important;
+    animation: none !important;
+    
+    box-shadow: none !important;
+}
+
+/* Homepage导航栏hover时，下拉菜单保持一致 */
+.homepage .navbar:hover .mega-menu {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    
+    backdrop-filter: blur(var(--glass-blur-xl)) 
+                     saturate(var(--glass-saturate-strong)) 
+                     brightness(1.08) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                              saturate(var(--glass-saturate-strong)) 
+                              brightness(1.08) !important;
+    transition: none !important;
+    animation: none !important;
+    
+    box-shadow: none !important;
+}
+
+.mega-menu-section {
+    padding: 0 1rem;
+}
+
+.mega-menu-header {
+    color: #DAA520;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(218, 165, 32, 0.3);
+    padding-bottom: 0.75rem;
+}
+
+/* ==================== Dropdown Items - Glass Style ==================== */
+
+.dropdown-item {
+    padding: 0.75rem 1rem;
+    margin: 2px 0;
+    border-radius: 20px; /* Footer同款圆角 */
+    color: #2c3e50;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: flex-start;
+    text-decoration: none;
+    min-height: 60px;
+    
+    background: transparent;
+    position: relative;
+}
+
+.dropdown-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.08) 0%,
+        rgba(218, 165, 32, 0.05) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-xs)) 
+                     saturate(var(--glass-saturate-light));
+    -webkit-backdrop-filter: blur(var(--glass-blur-xs)) 
+                              saturate(var(--glass-saturate-light));
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: -1;
+}
+
+.dropdown-item:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.12) 0%,
+        rgba(218, 165, 32, 0.08) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-sm));
+    -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+    color: #DAA520;
+}
+
+.dropdown-item:hover::before {
+    opacity: 1;
+}
+
+.dropdown-item:focus {
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.18) 0%,
+        rgba(218, 165, 32, 0.12) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-sm));
+    -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+    color: #DAA520;
+    outline: none;
+}
+
+.dropdown-item i {
+    width: 20px;
+    text-align: center;
+    margin-top: 4px;
+    flex-shrink: 0;
+    color: #DAA520;
+}
+
+/* Lucide图标垂直居中 */
+.dropdown-item i[data-lucide] {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0 !important;
+    margin-right: 0.5rem;
+    width: 20px;
+    height: 20px;
+}
+
+/* 导航栏链接中的Lucide图标垂直居中 */
+.nav-link i[data-lucide] {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+}
+
+.dropdown-item div {
+    flex: 1;
+    line-height: 1.4;
+}
+
+.dropdown-item small {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    font-weight: 400;
+    margin-top: 2px;
+}
+
+.mega-menu .dropdown-item {
+    margin: 0.75rem 0;
+    padding: 1rem;
+    border-radius: 20px; /* Footer同款圆角 */
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    min-height: 70px;
+    display: flex;
+    align-items: center; /* 垂直居中所有元素 */
+}
+
+.mega-menu .dropdown-item:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.12) 0%,
+        rgba(218, 165, 32, 0.08) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-sm));
+    -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+    color: #DAA520;
+}
+
+.mega-menu .dropdown-item i {
+    width: 24px;
+    font-size: 1.1rem;
+    margin-top: 6px;
+    color: #DAA520;
+}
+
+/* Mega-menu Lucide图标垂直居中 */
+.mega-menu .dropdown-item i[data-lucide] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin-top: 0 !important;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.mega-menu .dropdown-item div {
+    margin-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mega-menu .dropdown-item small {
+    color: #6c757d;
+    transition: color 0.3s ease;
+}
+
+/* ==================== Search Bar - Glass Style ==================== */
+
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    width: 250px;
+    
+    /* Glass效果 */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.10) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-md)) 
+                     saturate(var(--glass-saturate-medium));
+    -webkit-backdrop-filter: blur(var(--glass-blur-md)) 
+                              saturate(var(--glass-saturate-medium));
+    
+    border: 1px solid rgba(218, 165, 32, 0.3);
+    border-radius: 50px; /* Footer同款按钮圆角 */
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: none;
+}
+
+/* 透明导航栏时搜索框样式 */
+.navbar:not(:hover) .search-wrapper {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.10) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-sm)) 
+                     saturate(var(--glass-saturate-light));
+    -webkit-backdrop-filter: blur(var(--glass-blur-sm)) 
+                              saturate(var(--glass-saturate-light));
+}
+
+.search-wrapper:focus-within {
+    border-color: rgba(218, 165, 32, 0.6);
+    backdrop-filter: blur(var(--glass-blur-lg)) 
+                     saturate(var(--glass-saturate-strong));
+    -webkit-backdrop-filter: blur(var(--glass-blur-lg)) 
+                              saturate(var(--glass-saturate-strong));
+    box-shadow: none;
+}
+
+.search-wrapper .form-control {
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 0.7rem 1.2rem;
+    flex: 1;
+    background: transparent;
+    color: #2c3e50;
+}
+
+/* 有视频页面：搜索框文字颜色 */
+.homepage .navbar:not(.navbar-scrolled-visible):not(:hover) .search-wrapper .form-control,
+.destinations-page .navbar:not(.navbar-scrolled-visible):not(:hover) .search-wrapper .form-control,
+.packages-page .navbar:not(.navbar-scrolled-visible):not(:hover) .search-wrapper .form-control {
+    color: white;
+}
+
+.search-wrapper .form-control::placeholder {
+    color: #6c757d;
+}
+
+/* 有视频页面：搜索框placeholder颜色 */
+.homepage .navbar:not(.navbar-scrolled-visible):not(:hover) .search-wrapper .form-control::placeholder,
+.destinations-page .navbar:not(.navbar-scrolled-visible):not(:hover) .search-wrapper .form-control::placeholder,
+.packages-page .navbar:not(.navbar-scrolled-visible):not(:hover) .search-wrapper .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.btn-search {
+    border: none !important;
+    background: transparent !important;
+    color: #DAA520 !important;
+    padding: 0.7rem 1.2rem;
+    transition: all 0.3s ease;
+}
+
+/* 有视频页面：搜索按钮颜色 */
+.homepage .navbar:not(.navbar-scrolled-visible):not(:hover) .btn-search,
+.destinations-page .navbar:not(.navbar-scrolled-visible):not(:hover) .btn-search,
+.packages-page .navbar:not(.navbar-scrolled-visible):not(:hover) .btn-search {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.btn-search:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.25) 0%,
+        rgba(218, 165, 32, 0.20) 100%
+    ) !important;
+    color: white !important;
+    backdrop-filter: blur(var(--glass-blur-xs));
+    -webkit-backdrop-filter: blur(var(--glass-blur-xs));
+}
+
+/* ==================== Buttons - Glass Style ==================== */
+
+.navbar .btn-outline-secondary,
+.navbar .btn-outline-primary {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.08) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-sm)) 
+                     saturate(var(--glass-saturate-light));
+    -webkit-backdrop-filter: blur(var(--glass-blur-sm)) 
+                              saturate(var(--glass-saturate-light));
+    border: 1px solid rgba(218, 165, 32, 0.3);
+    color: #DAA520;
+    border-radius: 20px; /* Footer同款圆角 */
+    padding: 0.6rem 1rem;
+    transition: all 0.3s ease;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* 有视频页面：按钮样式 */
+.homepage .navbar:not(.navbar-scrolled-visible):not(:hover) .btn-outline-secondary,
+.homepage .navbar:not(.navbar-scrolled-visible):not(:hover) .btn-outline-primary,
+.destinations-page .navbar:not(.navbar-scrolled-visible):not(:hover) .btn-outline-secondary,
+.destinations-page .navbar:not(.navbar-scrolled-visible):not(:hover) .btn-outline-primary,
+.packages-page .navbar:not(.navbar-scrolled-visible):not(:hover) .btn-outline-secondary,
+.packages-page .navbar:not(.navbar-scrolled-visible):not(:hover) .btn-outline-primary {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.9);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.10) 100%
+    );
+}
+
+.navbar .btn-outline-secondary:hover,
+.navbar .btn-outline-primary:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.95) 0%,
+        rgba(218, 165, 32, 0.85) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-md)) 
+                     saturate(var(--glass-saturate-medium));
+    -webkit-backdrop-filter: blur(var(--glass-blur-md)) 
+                              saturate(var(--glass-saturate-medium));
+    border-color: rgba(218, 165, 32, 0.8);
+    color: white;
+    box-shadow: none;
+}
+
+.navbar .btn-primary {
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.95) 0%,
+        rgba(218, 165, 32, 0.90) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-sm)) 
+                     saturate(var(--glass-saturate-medium));
+    -webkit-backdrop-filter: blur(var(--glass-blur-sm)) 
+                              saturate(var(--glass-saturate-medium));
+    border-color: rgba(218, 165, 32, 0.8);
+    color: white;
+    border-radius: 20px; /* Footer同款圆角 */
+    padding: 0.6rem 1rem;
+    transition: all 0.3s ease;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+.navbar .btn-primary:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(184, 148, 28, 0.98) 0%,
+        rgba(184, 148, 28, 0.95) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-md)) 
+                     saturate(var(--glass-saturate-strong));
+    -webkit-backdrop-filter: blur(var(--glass-blur-md)) 
+                              saturate(var(--glass-saturate-strong));
+    border-color: rgba(184, 148, 28, 0.9);
+    box-shadow: none !important;
+}
+
+/* ==================== Theme Toggle Button ==================== */
+
+.theme-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem;
+    margin-right: 1rem; /* 按钮左移 */
+    
+    /* Glass morphism effect */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.12) 0%,
+        rgba(255, 255, 255, 0.08) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-sm)) 
+                     saturate(var(--glass-saturate-light));
+    -webkit-backdrop-filter: blur(var(--glass-blur-sm)) 
+                              saturate(var(--glass-saturate-light));
+    
+    border: 1px solid rgba(218, 165, 32, 0.2);
+    border-radius: 50px; /* Footer同款按钮圆角 */
+    /* 只对背景和边框有过渡效果，显示/隐藏无过渡 */
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    box-shadow: none;
+    
+    /* 默认隐藏状态 - 无过渡 */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* 鼠标悬停导航栏时显示按钮 - 瞬间出现 */
+.navbar:hover .theme-toggle-wrapper,
+.navbar .theme-toggle-wrapper:hover {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* 有视频页面：主题切换按钮样式 */
+.homepage .navbar:not(.navbar-scrolled-visible):not(:hover) .theme-toggle-wrapper,
+.destinations-page .navbar:not(.navbar-scrolled-visible):not(:hover) .theme-toggle-wrapper,
+.packages-page .navbar:not(.navbar-scrolled-visible):not(:hover) .theme-toggle-wrapper {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.10) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-xs)) 
+                     saturate(var(--glass-saturate-light));
+    -webkit-backdrop-filter: blur(var(--glass-blur-xs)) 
+                              saturate(var(--glass-saturate-light));
+    box-shadow: none;
+}
+
+/* 按钮本身悬停时的增强效果 */
+.navbar:hover .theme-toggle-wrapper:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.18) 0%,
+        rgba(218, 165, 32, 0.12) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-md)) 
+                     saturate(var(--glass-saturate-medium));
+    -webkit-backdrop-filter: blur(var(--glass-blur-md)) 
+                              saturate(var(--glass-saturate-medium));
+    border-color: rgba(218, 165, 32, 0.4);
+    box-shadow: none;
+}
+
+/* Dark mode body class */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.dark-mode .navbar {
+    /* 顶部默认透明（暗夜模式） */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom-color: rgba(255, 255, 255, 0);
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
+
+/* 移除暗夜模式下任何伪元素造成的发光线 */
+body.dark-mode .navbar::before,
+body.dark-mode .navbar::after { content: none !important; }
+
+/* 暗夜模式：品牌名称"My"为灰色 */
+body.dark-mode .navbar-brand span:first-of-type {
+    color: #c8c8c8 !important;
+}
+
+/* 暗夜模式：hover时"My"也保持灰色 */
+body.dark-mode .navbar:hover .navbar-brand span:first-of-type {
+    color: #c8c8c8 !important;
+}
+
+body.dark-mode .navbar .nav-link {
+    color: #c8c8c8 !important; /* 灰字 */
+}
+
+/* 暗夜模式：顶部 hover 保持透明 + 灰字 */
+body.dark-mode .navbar:hover { background: transparent !important; box-shadow: none !important; }
+body.dark-mode .navbar .nav-link:hover { color: #c8c8c8 !important; }
+body.dark-mode .navbar .nav-link.active { color: #c8c8c8 !important; }
+
+/* 顶部（未滚动）并 hover：黑底 + 灰字 */
+body.dark-mode .navbar:not(.navbar-scrolled-visible):hover {
+    background: linear-gradient(
+        135deg,
+        rgba(30, 30, 40, 0.95) 0%,
+        rgba(30, 30, 40, 0.90) 100%
+    ) !important;
+    backdrop-filter: blur(var(--glass-blur-3xl))
+                     saturate(var(--glass-saturate-ultra))
+                     brightness(1.05)
+                     contrast(1.05) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-3xl))
+                              saturate(var(--glass-saturate-ultra))
+                              brightness(1.05)
+                              contrast(1.05) !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+}
+body.dark-mode .navbar:not(.navbar-scrolled-visible):hover .nav-link { color: #c8c8c8 !important; }
+body.dark-mode .navbar:not(.navbar-scrolled-visible):hover .navbar-brand span:first-of-type { color: #c8c8c8 !important; }
+
+/* 暗夜模式：非顶部（滚动可见）黑底 + 灰字（默认/hover/active一致） */
+body.dark-mode .navbar.navbar-scrolled-visible {
+    background: linear-gradient(
+        135deg,
+        rgba(30, 30, 40, 0.95) 0%,
+        rgba(30, 30, 40, 0.90) 100%
+    ) !important; /* 与mega菜单一致的渐变背景 */
+    backdrop-filter: blur(var(--glass-blur-3xl))
+                     saturate(var(--glass-saturate-ultra))
+                     brightness(1.05)
+                     contrast(1.05) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-3xl))
+                              saturate(var(--glass-saturate-ultra))
+                              brightness(1.05)
+                              contrast(1.05) !important;
+    box-shadow: none !important;
+    border-bottom: none !important;
+}
+body.dark-mode .navbar.navbar-scrolled-visible .nav-link,
+body.dark-mode .navbar.navbar-scrolled-visible .nav-link:hover,
+body.dark-mode .navbar.navbar-scrolled-visible .nav-link.active { color: #c8c8c8 !important; }
+
+/* 暗夜模式：滚动后品牌名称"My"也为灰色 */
+body.dark-mode .navbar.navbar-scrolled-visible .navbar-brand span:first-of-type { color: #c8c8c8 !important; }
+
+/* 暗夜模式：所有固定导航状态下"My"都为灰色 */
+body.dark-mode .navbar.navbar-initial-solid .navbar-brand span:first-of-type { color: #c8c8c8 !important; }
+body.dark-mode.solid-navbar .navbar-brand span:first-of-type { color: #c8c8c8 !important; }
+
+/* 暗夜模式：下拉与 mega 与导航保持一致，首帧即为玻璃黑底 */
+body.dark-mode .dropdown-menu,
+body.dark-mode .mega-menu {
+    background: linear-gradient(
+        135deg,
+        rgba(30, 30, 40, 0.95) 0%,
+        rgba(30, 30, 40, 0.90) 100%
+    ) !important;
+    backdrop-filter: blur(var(--glass-blur-xl)) 
+                     saturate(var(--glass-saturate-strong)) 
+                     brightness(1.08) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                              saturate(var(--glass-saturate-strong)) 
+                              brightness(1.08) !important;
+    transition: none !important;
+    animation: none !important;
+    border-color: transparent;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3) !important;
+    border: none !important;
+}
+
+/* 暗夜模式：覆盖 hover 场景，避免白底（更高特异性） */
+body.dark-mode .navbar:hover .dropdown-menu,
+body.dark-mode .navbar:hover .mega-menu,
+body.dark-mode .homepage .navbar:hover .dropdown-menu,
+body.dark-mode .homepage .navbar:hover .mega-menu {
+    background: linear-gradient(
+        135deg,
+        rgba(30, 30, 40, 0.95) 0%,
+        rgba(30, 30, 40, 0.90) 100%
+    ) !important;
+    backdrop-filter: blur(var(--glass-blur-xl))
+                     saturate(var(--glass-saturate-strong))
+                     brightness(1.08) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-xl))
+                              saturate(var(--glass-saturate-strong))
+                              brightness(1.08) !important;
+    transition: none !important;
+    animation: none !important;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3) !important;
+    border: none !important;
+}
+
+body.dark-mode .dropdown-item {
+    color: #e0e0e0;
+}
+
+body.dark-mode .dropdown-item:hover {
+    color: #DAA520;
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.15) 0%,
+        rgba(218, 165, 32, 0.10) 100%
+    );
+}
+
+body.dark-mode .mega-menu-header {
+    color: #DAA520;
+    border-bottom-color: rgba(218, 165, 32, 0.3);
+}
+
+body.dark-mode .search-wrapper {
+    background: linear-gradient(
+        135deg,
+        rgba(40, 40, 50, 0.8) 0%,
+        rgba(30, 30, 40, 0.7) 100%
+    );
+    border-color: rgba(218, 165, 32, 0.3);
+}
+
+body.dark-mode .search-wrapper .form-control {
+    color: #e0e0e0;
+}
+
+body.dark-mode .search-wrapper .form-control::placeholder {
+    color: #8c8c8c;
+}
+
+body.dark-mode .theme-toggle-wrapper {
+    background: linear-gradient(
+        135deg,
+        rgba(60, 60, 70, 0.4) 0%,
+        rgba(50, 50, 60, 0.3) 100%
+    );
+    border-color: rgba(218, 165, 32, 0.25);
+}
+
+body.dark-mode .theme-toggle-wrapper:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.20) 0%,
+        rgba(218, 165, 32, 0.15) 100%
+    );
+    border-color: rgba(218, 165, 32, 0.4);
+}
+
+/* ==================== Language Dropdown ==================== */
+
+.language-dropdown {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.90) 100%
+    ) !important;
+    backdrop-filter: blur(var(--glass-blur-xl)) 
+                     saturate(var(--glass-saturate-strong)) 
+                     brightness(1.08) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                              saturate(var(--glass-saturate-strong)) 
+                              brightness(1.08) !important;
+    border: none;
+    border-radius: 24px; /* Footer同款圆角 */
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+    margin-top: 8px;
+    padding: 8px;
+}
+
+.language-dropdown .dropdown-item {
+    padding: 0.75rem 1rem;
+    margin: 2px 0;
+    border-radius: 20px; /* Footer同款圆角 */
+    color: #2c3e50;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.language-dropdown .dropdown-item:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.12) 0%,
+        rgba(218, 165, 32, 0.08) 100%
+    );
+    backdrop-filter: blur(var(--glass-blur-sm));
+    -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+    color: #DAA520;
+}
+
+.language-dropdown .dropdown-item.active {
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.18) 0%,
+        rgba(218, 165, 32, 0.12) 100%
+    ) !important;
+    backdrop-filter: blur(var(--glass-blur-sm));
+    -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+    color: #DAA520 !important;
+    font-weight: 600;
+}
+
+/* 语言栏：active/打开时使用橙色而非蓝色 */
+.navbar .nav-link#languageDropdown:focus,
+.navbar .nav-link#languageDropdown:active,
+.navbar .nav-link#languageDropdown.show,
+.navbar .nav-link#languageDropdown[aria-expanded="true"] {
+    color: #DAA520 !important;
+    border-color: rgba(218, 165, 32, 0.5) !important;
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.10) 0%,
+        rgba(218, 165, 32, 0.06) 100%
+    ) !important;
+    box-shadow: none !important;
+}
+
+/* 暗夜模式下的语言栏 Active/打开态（橙色保持一致） */
+body.dark-mode .nav-link#languageDropdown:focus,
+body.dark-mode .nav-link#languageDropdown:active,
+body.dark-mode .nav-link#languageDropdown.show,
+body.dark-mode .nav-link#languageDropdown[aria-expanded="true"] {
+    color: #DAA520 !important;
+    border-color: rgba(218, 165, 32, 0.5) !important;
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.18) 0%,
+        rgba(218, 165, 32, 0.12) 100%
+    ) !important;
+}
+
+/* 有些页面未给 UL 添加 language-dropdown 类，使用 aria-labelledby 精确覆盖 */
+.dropdown-menu[aria-labelledby="languageDropdown"] .dropdown-item.active,
+.dropdown-menu[aria-labelledby="languageDropdown"] .dropdown-item:active,
+.dropdown-menu .lang-btn.active {
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.18) 0%,
+        rgba(218, 165, 32, 0.12) 100%
+    ) !important;
+    color: #DAA520 !important;
+}
+
+body.dark-mode .dropdown-menu[aria-labelledby="languageDropdown"] .dropdown-item.active,
+body.dark-mode .dropdown-menu[aria-labelledby="languageDropdown"] .dropdown-item:active,
+body.dark-mode .dropdown-menu .lang-btn.active {
+    background: linear-gradient(
+        135deg,
+        rgba(218, 165, 32, 0.20) 0%,
+        rgba(218, 165, 32, 0.14) 100%
+    ) !important;
+    color: #DAA520 !important;
+}
+
+/* ==================== 背景模糊效果 ==================== */
+
+.navbar:hover ~ .main-content,
+.navbar:hover ~ main,
+.navbar:hover ~ .hero-section,
+.navbar:hover ~ .container,
+.navbar:hover ~ .content {
+    filter: blur(2px);
+}
+
+.homepage .navbar:hover ~ .main-content,
+.homepage .navbar:hover ~ main,
+.homepage .navbar:hover ~ .hero-section,
+.homepage .navbar:hover ~ .container,
+.homepage .navbar:hover ~ .content {
+    filter: blur(3px);
+}
+
+.navbar .dropdown.show ~ .main-content,
+.navbar .dropdown.show ~ main,
+.navbar .dropdown.show ~ .hero-section,
+.navbar .dropdown.show ~ .container,
+.navbar .dropdown.show ~ .content {
+    filter: blur(2px);
+}
+
+.homepage .navbar .dropdown.show ~ .main-content,
+.homepage .navbar .dropdown.show ~ main,
+.homepage .navbar .dropdown.show ~ .hero-section,
+.homepage .navbar .dropdown.show ~ .container,
+.homepage .navbar .dropdown.show ~ .content {
+    filter: blur(3px);
+}
+
+.blur-background {
+    filter: blur(2px) !important;
+    transition: filter 0.3s ease !important;
+}
+
+.homepage .blur-background {
+    filter: blur(3px) !important;
+    transition: filter 0.3s ease !important;
+}
+
+.page-blur-active .navbar,
+.page-blur-active .navbar *,
+.page-blur-active .dropdown-menu,
+.page-blur-active .mega-menu {
+    filter: none !important;
+}
+
+/* ==================== Hero Section ==================== */
+
+.hero-section {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    margin-top: -80px !important;
+    padding-top: 80px !important;
+}
+
+.homepage .hero-section {
+    margin-top: -85px !important;
+    padding-top: 0 !important;
+}
+
+.hero-section .carousel {
+    height: 100vh;
+    margin-top: 0 !important;
+}
+
+.hero-section .carousel-item video {
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    margin-top: 0 !important;
+}
+
+.hero-section .carousel-item video img {
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    margin-top: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .hero-section .carousel-item video {
+        height: 100vh;
+        object-fit: cover;
+    }
+    
+    .hero-section .carousel-item video img {
+        height: 100vh;
+        object-fit: cover;
+    }
+}
+
+.hero-section .carousel-item video::-webkit-media-controls {
+    display: none !important;
+}
+
+.hero-section .carousel-item video::-webkit-media-controls-enclosure {
+    display: none !important;
+}
+
+.hero-section .carousel-item video {
+    pointer-events: none;
+}
+
+.hero-section .carousel-item.active video {
+    pointer-events: auto;
+}
+
+.hero-section .carousel-item {
+    height: 100vh;
+}
+
+.hero-section .carousel-item img {
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    margin-top: 0 !important;
+}
+
+/* ==================== 移动端优化 ==================== */
+
+@media (max-width: 991.98px) {
+    /* 汉堡菜单按钮 - 白色主题样式 */
+    .navbar-toggler {
+        border: 2px solid rgba(218, 165, 32, 0.3);
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.90) 100%
+        );
+        backdrop-filter: blur(var(--glass-blur-lg)) 
+                         saturate(var(--glass-saturate-medium));
+        -webkit-backdrop-filter: blur(var(--glass-blur-lg)) 
+                                  saturate(var(--glass-saturate-medium));
+        border-radius: 8px;
+        padding: 0.5rem 0.65rem;
+        transition: all 0.3s ease;
+        box-shadow: none;
+    }
+    
+    .navbar-toggler:hover {
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.15) 0%,
+            rgba(218, 165, 32, 0.10) 100%
+        );
+        border-color: rgba(218, 165, 32, 0.5);
+    }
+    
+    .navbar-toggler:focus {
+        box-shadow: none;
+        outline: none;
+    }
+    
+    /* 汉堡图标线条 - 深色 */
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(44, 62, 80, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+    
+    /* 有视频页面的汉堡按钮 - 增强醒目效果 */
+    .homepage .navbar-toggler,
+    .destinations-page .navbar-toggler,
+    .packages-page .navbar-toggler,
+    .help-page .navbar-toggler {
+        border: 2px solid rgba(255, 255, 255, 0.8) !important;
+        background: rgba(255, 255, 255, 0.25) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: none;
+    }
+    
+    .homepage .navbar-toggler:hover,
+    .destinations-page .navbar-toggler:hover,
+    .packages-page .navbar-toggler:hover,
+    .help-page .navbar-toggler:hover {
+        background: rgba(255, 255, 255, 0.35) !important;
+        border-color: rgba(255, 255, 255, 1) !important;
+        box-shadow: none;
+        transform: scale(1.05);
+    }
+    
+    .homepage .navbar-toggler:focus,
+    .destinations-page .navbar-toggler:focus,
+    .packages-page .navbar-toggler:focus,
+    .help-page .navbar-toggler:focus {
+        box-shadow: none;
+        outline: none;
+    }
+    
+    /* 汉堡图标线条 - 白色且更粗 */
+    .homepage .navbar-toggler-icon,
+    .destinations-page .navbar-toggler-icon,
+    .packages-page .navbar-toggler-icon,
+    .help-page .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+    }
+    
+/* ==================== 移动端导航栏优化 - 金色主题配色 ==================== */
+
+/* 移动端品牌logo - 深色文字适配白色背景 */
+.navbar:not(.homepage):not(.destinations-page):not(.packages-page):not(.help-page) .navbar-brand span:first-of-type {
+    color: #000000 !important;
+    text-shadow: none;
+}
+
+/* 有视频页面（首页、目的地、套餐、帮助中心）移动端导航栏：完全透明背景 */
+.homepage .navbar,
+.destinations-page .navbar,
+.packages-page .navbar,
+.help-page .navbar {
+    /* 完全透明背景 - 与电脑端保持一致 */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+/* 移动端有视频页面黑暗模式：完全透明背景 */
+body.dark-mode .homepage .navbar,
+body.dark-mode .destinations-page .navbar,
+body.dark-mode .packages-page .navbar,
+body.dark-mode .help-page .navbar {
+    /* 完全透明背景 - 与电脑端保持一致 */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+    /* 非视频页面导航栏：白色主题背景（与桌面端保持一致） */
+    .navbar:not(.homepage):not(.destinations-page):not(.packages-page):not(.help-page) {
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.90) 100%
+        ) !important;
+        backdrop-filter: blur(var(--glass-blur-3xl)) 
+                         saturate(var(--glass-saturate-ultra)) 
+                         brightness(1.08)
+                         contrast(1.1) !important;
+        -webkit-backdrop-filter: blur(var(--glass-blur-3xl)) 
+                                  saturate(var(--glass-saturate-ultra)) 
+                                  brightness(1.08)
+                                  contrast(1.1) !important;
+        box-shadow: none !important;
+        border-bottom: none !important;
+    }
+
+    /* 移动端黑暗模式导航栏 - 非视频页面 */
+    body.dark-mode .navbar:not(.homepage):not(.destinations-page):not(.packages-page):not(.help-page) {
+        background: linear-gradient(
+            180deg,
+            rgba(10, 10, 12, 0.95) 0%,
+            rgba(10, 10, 12, 0.92) 100%
+        ) !important;
+        backdrop-filter: blur(var(--glass-blur-lg)) 
+                         saturate(var(--glass-saturate-medium)) !important;
+        -webkit-backdrop-filter: blur(var(--glass-blur-lg)) 
+                                  saturate(var(--glass-saturate-medium)) !important;
+        box-shadow: none !important;
+    }
+    
+    .navbar .nav-link {
+        color: #2c3e50 !important;
+        text-shadow: none;
+        padding: 0.75rem 1rem;
+        margin: 0.25rem 0;
+    }
+    
+    /* 非视频页面导航链接悬停 */
+    .navbar:not(.homepage):not(.destinations-page):not(.packages-page):not(.help-page) .nav-link:hover {
+        color: #DAA520 !important;
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.12) 0%,
+            rgba(218, 165, 32, 0.08) 100%
+        );
+        border-radius: 12px;
+    }
+
+    /* 移动端黑暗模式导航链接 */
+    body.dark-mode .navbar .nav-link {
+        color: #e0e0e0 !important;
+        text-shadow: none;
+    }
+
+    body.dark-mode .navbar .nav-link:hover {
+        color: #DAA520 !important;
+    }
+    
+    /* 有视频页面导航栏链接：白色文字（透明背景时）*/
+    .homepage .navbar .nav-link,
+    .destinations-page .navbar .nav-link,
+    .packages-page .navbar .nav-link,
+    .help-page .navbar .nav-link {
+        color: white !important;
+        text-shadow: none;
+        padding: 0.75rem 1rem;
+        margin: 0.25rem 0;
+        font-weight: 600;
+    }
+
+    /* 有视频页面导航链接悬停：金色主题 */
+    .homepage .navbar .nav-link:hover,
+    .destinations-page .navbar .nav-link:hover,
+    .packages-page .navbar .nav-link:hover,
+    .help-page .navbar .nav-link:hover {
+        color: #DAA520 !important;
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.10) 0%,
+            rgba(218, 165, 32, 0.05) 100%
+        );
+        border-radius: 12px;
+    }
+
+    /* 移动端有视频页面黑暗模式导航链接：白色文字 */
+    body.dark-mode .homepage .navbar .nav-link,
+    body.dark-mode .destinations-page .navbar .nav-link,
+    body.dark-mode .packages-page .navbar .nav-link,
+    body.dark-mode .help-page .navbar .nav-link {
+        color: white !important;
+        text-shadow: none;
+    }
+
+    body.dark-mode .homepage .navbar .nav-link:hover,
+    body.dark-mode .destinations-page .navbar .nav-link:hover,
+    body.dark-mode .packages-page .navbar .nav-link:hover,
+    body.dark-mode .help-page .navbar .nav-link:hover {
+        color: #DAA520 !important;
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.20) 0%,
+            rgba(218, 165, 32, 0.15) 100%
+        );
+    }
+    
+    .search-wrapper {
+        border-color: rgba(218, 165, 32, 0.3);
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0.10) 100%
+        );
+        width: 100%;
+        margin: 1rem 0;
+    }
+    
+    .search-wrapper .form-control {
+        color: #2c3e50 !important;
+    }
+    
+    .search-wrapper .form-control::placeholder {
+        color: #6c757d !important;
+    }
+    
+    .search-wrapper .btn-search {
+        color: #DAA520 !important;
+    }
+    
+    /* 有视频页面搜索框：透明背景 */
+    .homepage .search-wrapper,
+    .destinations-page .search-wrapper,
+    .packages-page .search-wrapper,
+    .help-page .search-wrapper {
+        border-color: rgba(255, 255, 255, 0.3);
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+    
+    
+    /* 有视频页面搜索框输入：白色文字 + placeholder */
+    .homepage .search-wrapper .form-control,
+    .destinations-page .search-wrapper .form-control,
+    .packages-page .search-wrapper .form-control,
+    .help-page .search-wrapper .form-control {
+        color: white;
+    }
+    
+    .homepage .search-wrapper .form-control::placeholder,
+    .destinations-page .search-wrapper .form-control::placeholder,
+    .packages-page .search-wrapper .form-control::placeholder,
+    .help-page .search-wrapper .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .navbar-collapse {
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.90) 100%
+        );
+        backdrop-filter: blur(var(--glass-blur-3xl)) 
+                         saturate(var(--glass-saturate-ultra)) 
+                         brightness(1.08)
+                         contrast(1.1);
+        -webkit-backdrop-filter: blur(var(--glass-blur-3xl)) 
+                                  saturate(var(--glass-saturate-ultra)) 
+                                  brightness(1.08)
+                                  contrast(1.1);
+        border-radius: 24px; /* Footer同款圆角 */
+        margin-top: 16px;
+        padding: 20px;
+        box-shadow: none !important;
+        border: 1px solid rgba(218, 165, 32, 0.3);
+    }
+
+    /* 移动端黑暗模式导航折叠菜单 */
+    body.dark-mode .navbar-collapse {
+        background: linear-gradient(
+            135deg,
+            rgba(10, 10, 12, 0.98) 0%,
+            rgba(10, 10, 12, 0.95) 100%
+        );
+        backdrop-filter: blur(var(--glass-blur-xl)) 
+                         saturate(var(--glass-saturate-strong));
+        -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                                  saturate(var(--glass-saturate-strong));
+        box-shadow: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* 移动端黑暗模式汉堡菜单按钮 */
+    body.dark-mode .navbar-toggler {
+        border: 2px solid rgba(218, 165, 32, 0.5) !important;
+        background: rgba(10, 10, 12, 0.8) !important;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        box-shadow: none;
+    }
+
+    body.dark-mode .navbar-toggler:hover {
+        background: rgba(218, 165, 32, 0.2) !important;
+        border-color: rgba(218, 165, 32, 0.8) !important;
+        box-shadow: none;
+    }
+
+    body.dark-mode .navbar-toggler:focus {
+        box-shadow: none;
+        outline: none;
+    }
+
+    /* 移动端黑暗模式汉堡菜单图标 */
+    body.dark-mode .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(224, 224, 224, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+    }
+    
+    .dropdown-menu {
+        position: static !important;
+        float: none;
+        width: 100%;
+        margin: 0.5rem 0;
+        border: none;
+        box-shadow: none;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.90) 100%
+        );
+        backdrop-filter: blur(var(--glass-blur-xl)) 
+                         saturate(var(--glass-saturate-strong)) 
+                         brightness(1.08);
+        -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                                  saturate(var(--glass-saturate-strong)) 
+                                  brightness(1.08);
+        border-radius: 20px; /* Footer同款圆角 */
+    }
+    
+    /* 移动端下拉菜单项 - 金色文字 */
+    .dropdown-menu .dropdown-item {
+        color: #DAA520 !important;
+    }
+    
+    /* 移动端下拉菜单图标 - 金色 */
+    .dropdown-menu .dropdown-item i {
+        color: #DAA520 !important;
+    }
+    
+    .dropdown-menu .dropdown-item:hover {
+        color: #DAA520 !important;
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.12) 0%,
+            rgba(218, 165, 32, 0.08) 100%
+        );
+    }
+
+    /* 移动端黑暗模式下拉菜单 */
+    body.dark-mode .dropdown-menu {
+        background: linear-gradient(
+            135deg,
+            rgba(30, 30, 40, 0.95) 0%,
+            rgba(30, 30, 40, 0.90) 100%
+        );
+        backdrop-filter: blur(var(--glass-blur-sm));
+        -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+    }
+
+    /* 移动端黑暗模式下拉菜单项 */
+    body.dark-mode .dropdown-menu .dropdown-item {
+        color: #e0e0e0;
+    }
+
+    body.dark-mode .dropdown-menu .dropdown-item:hover {
+        color: #DAA520;
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.15) 0%,
+            rgba(218, 165, 32, 0.10) 100%
+        );
+    }
+    
+    .mega-menu {
+        position: static !important;
+        width: 100%;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        border-radius: 20px; /* Footer同款圆角 */
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.90) 100%
+        );
+        backdrop-filter: blur(var(--glass-blur-xl)) 
+                         saturate(var(--glass-saturate-strong)) 
+                         brightness(1.08);
+        -webkit-backdrop-filter: blur(var(--glass-blur-xl)) 
+                                  saturate(var(--glass-saturate-strong)) 
+                                  brightness(1.08);
+    }
+    
+    /* 移动端Mega菜单项 - 金色文字 */
+    .mega-menu .dropdown-item {
+        color: #DAA520 !important;
+    }
+    
+    /* 移动端Mega菜单图标 - 金色 */
+    .mega-menu .dropdown-item i {
+        color: #DAA520 !important;
+    }
+    
+    .mega-menu .dropdown-item:hover {
+        color: #DAA520 !important;
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.12) 0%,
+            rgba(218, 165, 32, 0.08) 100%
+        );
+    }
+    
+    .mega-menu-header {
+        color: #DAA520 !important;
+        border-bottom-color: rgba(218, 165, 32, 0.3);
+    }
+
+    /* 移动端黑暗模式Mega菜单 */
+    body.dark-mode .mega-menu {
+        background: linear-gradient(
+            135deg,
+            rgba(30, 30, 40, 0.95) 0%,
+            rgba(30, 30, 40, 0.90) 100%
+        );
+        backdrop-filter: blur(var(--glass-blur-sm));
+        -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+    }
+
+    body.dark-mode .mega-menu .dropdown-item {
+        color: #e0e0e0;
+    }
+
+    body.dark-mode .mega-menu .dropdown-item:hover {
+        color: #DAA520;
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.15) 0%,
+            rgba(218, 165, 32, 0.10) 100%
+        );
+    }
+
+    body.dark-mode .mega-menu-header {
+        color: #DAA520;
+        border-bottom-color: rgba(218, 165, 32, 0.3);
+    }
+    
+    .theme-toggle-wrapper {
+        margin: 0.5rem 0;
+        padding: 0.5rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* 移动端语言和账户选项靠左对齐 */
+    .navbar-collapse .d-flex.align-items-center {
+        justify-content: flex-start !important;
+        flex-direction: column;
+        align-items: flex-start !important;
+        width: 100%;
+        gap: 0 !important;
+        margin-top: 1rem;
+        padding-left: 0;
+    }
+    
+    .navbar-collapse .navbar-nav.ms-auto {
+        margin-left: 0 !important;
+        flex-direction: row;
+        gap: 0.5rem;
+        width: 100%;
+    }
+    
+    .navbar-collapse .nav-item.dropdown {
+        margin: 0;
+    }
+    
+    /* 移动端导航折叠菜单中的主导航链接样式 */
+    .navbar-collapse .navbar-nav.me-auto .nav-link {
+        color: #2c3e50 !important;
+        text-shadow: none;
+        padding: 0.75rem 1rem;
+        margin: 0.25rem 0;
+        font-weight: 600;
+    }
+    
+    /* 提高优先级，覆盖全局白色文字样式 - 统一白底黑字 */
+    .navbar-collapse .navbar-nav .nav-link {
+        color: #2c3e50 !important;
+    }
+    
+    .navbar-collapse .navbar-nav.me-auto .nav-link:hover {
+        color: #DAA520 !important;
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.12) 0%,
+            rgba(218, 165, 32, 0.08) 100%
+        );
+        border-radius: 12px;
+    }
+    
+    /* 有视频页面移动端导航折叠菜单中的主导航链接样式 - 统一白底黑字 */
+    .homepage .navbar-collapse .navbar-nav.me-auto .nav-link,
+    .destinations-page .navbar-collapse .navbar-nav.me-auto .nav-link,
+    .packages-page .navbar-collapse .navbar-nav.me-auto .nav-link,
+    .help-page .navbar-collapse .navbar-nav.me-auto .nav-link {
+        color: #2c3e50 !important;
+        text-shadow: none;
+        padding: 0.75rem 1rem;
+        margin: 0.25rem 0;
+        font-weight: 600;
+    }
+    
+    /* 提高优先级，覆盖全局白色文字样式 - 视频页面也统一白底黑字 */
+    .homepage .navbar-collapse .navbar-nav .nav-link,
+    .destinations-page .navbar-collapse .navbar-nav .nav-link,
+    .packages-page .navbar-collapse .navbar-nav .nav-link,
+    .help-page .navbar-collapse .navbar-nav .nav-link {
+        color: #2c3e50 !important;
+    }
+    
+    .homepage .navbar-collapse .navbar-nav.me-auto .nav-link:hover,
+    .destinations-page .navbar-collapse .navbar-nav.me-auto .nav-link:hover,
+    .packages-page .navbar-collapse .navbar-nav.me-auto .nav-link:hover,
+    .help-page .navbar-collapse .navbar-nav.me-auto .nav-link:hover {
+        color: #DAA520 !important;
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.10) 0%,
+            rgba(218, 165, 32, 0.05) 100%
+        );
+        border-radius: 12px;
+    }
+    
+    /* 移动端语言和账户链接样式 - 统一白底黑字 */
+    .navbar-collapse .navbar-nav.ms-auto .nav-link {
+        padding: 0.5rem 1rem;
+        border-radius: 12px;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.90) 100%
+        );
+        border: 1px solid rgba(218, 165, 32, 0.3);
+        color: #2c3e50 !important;
+        font-weight: 600;
+        display: inline-flex;
+        width: auto;
+        min-width: 120px;
+    }
+    
+    .navbar-collapse .navbar-nav.ms-auto .nav-link:hover {
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.25) 0%,
+            rgba(218, 165, 32, 0.15) 100%
+        );
+        border-color: rgba(218, 165, 32, 0.5);
+        color: #DAA520 !important;
+    }
+    
+    /* 移动端语言和账户的下拉菜单靠左显示 */
+    .navbar-collapse .navbar-nav.ms-auto .dropdown-menu {
+        left: 0 !important;
+        right: auto !important;
+        margin-top: 0.5rem;
+    }
+    
+    /* 有视频页面移动端：语言和账户按钮样式 - 统一白底黑字 */
+    .homepage .navbar-collapse .navbar-nav.ms-auto .nav-link,
+    .destinations-page .navbar-collapse .navbar-nav.ms-auto .nav-link,
+    .packages-page .navbar-collapse .navbar-nav.ms-auto .nav-link,
+    .help-page .navbar-collapse .navbar-nav.ms-auto .nav-link {
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.90) 100%
+        );
+        border: 1px solid rgba(218, 165, 32, 0.3);
+        color: #2c3e50 !important;
+    }
+    
+    .homepage .navbar-collapse .navbar-nav.ms-auto .nav-link:hover,
+    .destinations-page .navbar-collapse .navbar-nav.ms-auto .nav-link:hover,
+    .packages-page .navbar-collapse .navbar-nav.ms-auto .nav-link:hover,
+    .help-page .navbar-collapse .navbar-nav.ms-auto .nav-link:hover {
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.25) 0%,
+            rgba(218, 165, 32, 0.15) 100%
+        );
+        border-color: rgba(218, 165, 32, 0.5);
+        color: #DAA520 !important;
+    }
+
+    /* Mobile header-left theme toggle: always visible on mobile */
+    #mobileThemeToggle {
+        width: auto !important;
+        margin: 0 0.5rem 0 0;
+        padding: 0.2rem;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        
+        /* Mobile-specific glass effect - 金色主题 */
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.25) 0%,
+            rgba(255, 255, 255, 0.15) 100%
+        );
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: 8px;
+        box-shadow: none;
+    }
+    
+    #mobileThemeToggle:hover {
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.35) 0%,
+            rgba(255, 255, 255, 0.25) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* 移动端菜单打开状态 */
+    body.navbar-mobile-open {
+        overflow-x: hidden;
+    }
+
+    body.navbar-mobile-open .navbar-collapse {
+        display: block !important;
+    }
+
+    /* Dark mode mobile theme toggle */
+    body.dark-mode #mobileThemeToggle {
+        background: linear-gradient(
+            135deg,
+            rgba(60, 60, 70, 0.4) 0%,
+            rgba(50, 50, 60, 0.3) 100%
+        );
+        border-color: rgba(218, 165, 32, 0.25);
+    }
+
+    body.dark-mode #mobileThemeToggle:hover {
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.20) 0%,
+            rgba(218, 165, 32, 0.15) 100%
+        );
+        border-color: rgba(218, 165, 32, 0.4);
+    }
+    
+    /* 移动端暗黑模式：语言和账户按钮样式 */
+    body.dark-mode .navbar-collapse .navbar-nav.ms-auto .nav-link {
+        background: linear-gradient(
+            135deg,
+            rgba(60, 60, 70, 0.5) 0%,
+            rgba(50, 50, 60, 0.4) 100%
+        );
+        border: 1px solid rgba(218, 165, 32, 0.3);
+        color: #e0e0e0 !important;
+    }
+    
+    body.dark-mode .navbar-collapse .navbar-nav.ms-auto .nav-link:hover {
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.25) 0%,
+            rgba(218, 165, 32, 0.18) 100%
+        );
+        border-color: rgba(218, 165, 32, 0.5);
+        color: #DAA520 !important;
+    }
+    
+    /* 移动端暗黑模式下拉菜单项 */
+    body.dark-mode .dropdown-menu .dropdown-item {
+        color: #e0e0e0 !important;
+    }
+    
+    body.dark-mode .dropdown-menu .dropdown-item:hover {
+        color: #DAA520 !important;
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.15) 0%,
+            rgba(218, 165, 32, 0.10) 100%
+        );
+    }
+    
+    /* 移动端暗黑模式Mega菜单项 */
+    body.dark-mode .mega-menu .dropdown-item {
+        color: #e0e0e0 !important;
+    }
+    
+    body.dark-mode .mega-menu .dropdown-item:hover {
+        color: #DAA520 !important;
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.15) 0%,
+            rgba(218, 165, 32, 0.10) 100%
+        );
+    }
+    
+    body.dark-mode .mega-menu-header {
+        color: #DAA520 !important;
+        border-bottom-color: rgba(218, 165, 32, 0.3);
+    }
+    
+    /* 移动端暗黑模式有视频页面：语言和账户按钮 */
+    body.dark-mode .homepage .navbar-collapse .navbar-nav.ms-auto .nav-link,
+    body.dark-mode .destinations-page .navbar-collapse .navbar-nav.ms-auto .nav-link,
+    body.dark-mode .packages-page .navbar-collapse .navbar-nav.ms-auto .nav-link,
+    body.dark-mode .help-page .navbar-collapse .navbar-nav.ms-auto .nav-link {
+        background: linear-gradient(
+            135deg,
+            rgba(30, 30, 40, 0.6) 0%,
+            rgba(20, 20, 30, 0.5) 100%
+        );
+        border: 1px solid rgba(218, 165, 32, 0.4);
+        color: #e0e0e0 !important;
+    }
+    
+    body.dark-mode .homepage .navbar-collapse .navbar-nav.ms-auto .nav-link:hover,
+    body.dark-mode .destinations-page .navbar-collapse .navbar-nav.ms-auto .nav-link:hover,
+    body.dark-mode .packages-page .navbar-collapse .navbar-nav.ms-auto .nav-link:hover,
+    body.dark-mode .help-page .navbar-collapse .navbar-nav.ms-auto .nav-link:hover {
+        background: linear-gradient(
+            135deg,
+            rgba(218, 165, 32, 0.30) 0%,
+            rgba(218, 165, 32, 0.22) 100%
+        );
+        border-color: rgba(218, 165, 32, 0.6);
+        color: #DAA520 !important;
+    }
+    
+    .navbar:hover ~ .main-content,
+    .navbar:hover ~ main,
+    .navbar:hover ~ .hero-section,
+    .navbar:hover ~ .container,
+    .navbar:hover ~ .content,
+    .homepage .navbar:hover ~ .main-content,
+    .homepage .navbar:hover ~ main,
+    .homepage .navbar:hover ~ .hero-section,
+    .homepage .navbar:hover ~ .container,
+    .homepage .navbar:hover ~ .content {
+        filter: none !important;
+    }
+    
+    .hero-section,
+    .homepage .hero-section {
+        margin-top: -80px !important;
+        padding-top: 80px !important;
+    }
+    
+    .homepage .hero-section {
+        padding-top: 0 !important;
+    }
+}
+
+/* ==================== 无障碍支持 ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar,
+    .dropdown-menu,
+    .mega-menu,
+    .dropdown-item,
+    .nav-link,
+    .btn,
+    .main-content {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .navbar,
+    .homepage .navbar {
+        background: white !important;
+        border: 2px solid #000 !important;
+    }
+    
+    .dropdown-menu,
+    .mega-menu {
+        background: white;
+        border: 2px solid #000;
+    }
+    
+    .dropdown-item:hover {
+        background: #000;
+        color: #fff;
+    }
+}
+
+/* Focus状态 */
+.nav-link:focus,
+.dropdown-item:focus,
+.btn:focus {
+    outline: 2px solid #DAA520;
+    outline-offset: 2px;
+}
+
+/* Loading状态 */
+.nav-link.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.nav-link.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    width: 12px;
+    height: 12px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ==================== 文档结束 ==================== */
+

@@ -1,0 +1,296 @@
+/**
+ * Modern CSS Variables (2025)
+ * Design system with theme support
+ */
+
+:root {
+    /* Primary Colors */
+    --color-primary: #0066cc;
+    --color-primary-dark: #004c99;
+    --color-primary-light: #3385db;
+    --color-primary-lightest: #e6f2ff;
+    
+    /* Secondary Colors */
+    --color-secondary: #6c757d;
+    --color-secondary-dark: #545b62;
+    --color-secondary-light: #868e96;
+    
+    /* Accent Colors */
+    --color-accent: #ff6b6b;
+    --color-accent-dark: #ee5a52;
+    --color-accent-light: #ff8787;
+    
+    /* Success, Warning, Error */
+    --color-success: #28a745;
+    --color-success-light: #d4edda;
+    --color-warning: #ffc107;
+    --color-warning-light: #fff3cd;
+    --color-error: #dc3545;
+    --color-error-light: #f8d7da;
+    --color-info: #17a2b8;
+    --color-info-light: #d1ecf1;
+    
+    /* Neutral Colors */
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-gray-100: #f8f9fa;
+    --color-gray-200: #e9ecef;
+    --color-gray-300: #dee2e6;
+    --color-gray-400: #ced4da;
+    --color-gray-500: #adb5bd;
+    --color-gray-600: #6c757d;
+    --color-gray-700: #495057;
+    --color-gray-800: #343a40;
+    --color-gray-900: #212529;
+    
+    /* Text Colors */
+    --color-text-primary: #212529;
+    --color-text-secondary: #6c757d;
+    --color-text-muted: #adb5bd;
+    --color-text-inverse: #ffffff;
+    
+    /* Background Colors */
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f8f9fa;
+    --color-bg-tertiary: #e9ecef;
+    --color-bg-overlay: rgba(0, 0, 0, 0.5);
+    
+    /* Border Colors */
+    --color-border-primary: #dee2e6;
+    --color-border-secondary: #e9ecef;
+    --color-border-focus: #0066cc;
+    
+    /* Typography - Updated to use Premium Font System (2025) */
+    /* See fonts.css for complete font definitions */
+    --font-family-base: 'Lato', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 
+                        'Segoe UI', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+    --font-family-heading: 'Playfair Display', 'Noto Serif SC', Georgia, 'Times New Roman', serif;
+    --font-family-accent: 'Raleway', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+    
+    --font-size-xs: 0.75rem;     /* 12px */
+    --font-size-sm: 0.875rem;    /* 14px */
+    --font-size-base: 1rem;      /* 16px */
+    --font-size-lg: 1.125rem;    /* 18px */
+    --font-size-xl: 1.25rem;     /* 20px */
+    --font-size-2xl: 1.5rem;     /* 24px */
+    --font-size-3xl: 1.875rem;   /* 30px */
+    --font-size-4xl: 2.25rem;    /* 36px */
+    --font-size-5xl: 3rem;       /* 48px */
+    
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;    /* 4px */
+    --spacing-sm: 0.5rem;     /* 8px */
+    --spacing-md: 1rem;       /* 16px */
+    --spacing-lg: 1.5rem;     /* 24px */
+    --spacing-xl: 2rem;       /* 32px */
+    --spacing-2xl: 3rem;      /* 48px */
+    --spacing-3xl: 4rem;      /* 64px */
+    --spacing-4xl: 6rem;      /* 96px */
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;     /* 4px */
+    --radius-md: 0.5rem;      /* 8px */
+    --radius-lg: 0.75rem;     /* 12px */
+    --radius-xl: 1rem;        /* 16px */
+    --radius-2xl: 1.5rem;     /* 24px */
+    --radius-full: 9999px;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    
+    /* Transitions */
+    --transition-fast: 150ms ease-in-out;
+    --transition-base: 300ms ease-in-out;
+    --transition-slow: 500ms ease-in-out;
+    
+    /* Z-Index Scale */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+    
+    /* Breakpoints (for reference, use in media queries) */
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-xxl: 1400px;
+    
+    /* Container Widths - Updated to match Airbnb/Booking.com standards (2025) */
+    --container-sm: 540px;
+    --container-md: 720px;
+    --container-lg: 960px;
+    --container-xl: 1200px;       /* Updated: 1140px → 1200px (Airbnb standard) */
+    --container-xxl: 1400px;      /* Updated: 1320px → 1400px (Airbnb standard) */
+    
+    /* Content Type Specific Containers (2025 Best Practices) */
+    /* Based on readability research and UX optimization */
+    --container-reading: 800px;   /* 文章/详情页 - 优化阅读体验 (45-75字符/行) */
+    --container-form: 600px;      /* 表单页 - 提升完成率 (研究显示480-600px最佳) */
+    --container-wide: 1400px;     /* Updated: 1320px → 1400px (首页/列表 - 内容丰富展示) */
+    --container-dashboard: 1280px; /* 管理后台 - 功能优先 */
+    
+    /* Responsive Container Padding (渐进式边距系统) */
+    --padding-container-mobile: 16px;   /* 手机 - 最小呼吸空间 */
+    --padding-container-tablet: 24px;   /* 平板 - 标准边距 */
+    --padding-container-desktop: 32px;  /* 桌面 - 舒适边距 */
+    --padding-container-wide: 48px;     /* 超宽屏 - 更大留白 */
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    /* Override colors for dark mode */
+    --color-text-primary: #f8f9fa;
+    --color-text-secondary: #adb5bd;
+    --color-text-muted: #6c757d;
+    
+    --color-bg-primary: #212529;
+    --color-bg-secondary: #343a40;
+    --color-bg-tertiary: #495057;
+    
+    --color-border-primary: #495057;
+    --color-border-secondary: #343a40;
+    
+    --color-gray-100: #343a40;
+    --color-gray-200: #495057;
+    --color-gray-300: #6c757d;
+    --color-gray-800: #e9ecef;
+    --color-gray-900: #f8f9fa;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-fast: 0ms;
+        --transition-base: 0ms;
+        --transition-slow: 0ms;
+    }
+}
+
+    /* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --color-border-primary: #000000;
+        --shadow-sm: none;
+        --shadow-md: 0 0 0 2px rgba(0, 0, 0, 0.2);
+        --shadow-lg: 0 0 0 3px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* ==================== Liquid Glass Variables (2025) ==================== */
+:root {
+    /* Liquid Glass - Blur Levels */
+    --glass-blur-xs: 8px;
+    --glass-blur-sm: 12px;
+    --glass-blur-md: 16px;
+    --glass-blur-lg: 20px;
+    --glass-blur-xl: 24px;
+    --glass-blur-2xl: 28px;
+    --glass-blur-3xl: 32px;
+    
+    /* Liquid Glass - Saturate Levels */
+    --glass-saturate-light: 140%;
+    --glass-saturate-medium: 160%;
+    --glass-saturate-strong: 180%;
+    --glass-saturate-ultra: 200%;
+    
+    /* Liquid Glass - Border Opacity */
+    --glass-border-subtle: 0.15;
+    --glass-border-light: 0.25;
+    --glass-border-medium: 0.35;
+    --glass-border-strong: 0.45;
+    
+    /* Liquid Glass - Background Opacity */
+    --glass-bg-ultra-light: 0.08;
+    --glass-bg-light: 0.12;
+    --glass-bg-medium: 0.18;
+    --glass-bg-strong: 0.25;
+    --glass-bg-ultra: 0.35;
+    
+    /* Liquid Glass - Shadow System */
+    --glass-shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08),
+                       inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    --glass-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.10),
+                       inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                       inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+    --glass-shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.12),
+                       inset 0 1px 0 rgba(255, 255, 255, 0.35),
+                       inset 0 -1px 0 rgba(255, 255, 255, 0.2);
+    --glass-shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.15),
+                       inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                       inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+    
+    /* Brand Gold Color */
+    --color-gold: #DAA520;
+    --color-gold-dark: #B8941C;
+    --color-gold-light: #F0D878;
+    
+    /* Navigation Heights */
+    --nav-height: 80px;
+    --sub-nav-height: 48px;
+    --nav-total-height: 128px; /* main + sub */
+}
+
+/* Dark Mode Liquid Glass Adjustments */
+[data-theme="dark"],
+body.dark-mode {
+    --glass-blur-xs: 10px;
+    --glass-blur-sm: 14px;
+    --glass-blur-md: 18px;
+    --glass-blur-lg: 22px;
+    --glass-blur-xl: 26px;
+    
+    --glass-saturate-light: 150%;
+    --glass-saturate-medium: 170%;
+    --glass-saturate-strong: 190%;
+    
+    --glass-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.25),
+                       inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    --glass-shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.30),
+                       inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Glass - Performance Optimization */
+@media (max-width: 768px) {
+    :root {
+        --glass-blur-xs: 6px;
+        --glass-blur-sm: 8px;
+        --glass-blur-md: 10px;
+        --glass-blur-lg: 12px;
+        --glass-blur-xl: 14px;
+        --glass-blur-2xl: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --glass-blur-xs: 4px;
+        --glass-blur-sm: 6px;
+        --glass-blur-md: 8px;
+        --glass-blur-lg: 10px;
+        --glass-blur-xl: 12px;
+        --glass-blur-2xl: 14px;
+    }
+}
+
+
+
