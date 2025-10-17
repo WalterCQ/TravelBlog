@@ -31,3 +31,17 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Logs ###
+logs/
+*.log
+
+### Deployment artifacts ###
+deployment/
+*.war
+
+### Temporary files ###
+*.tmp
+*.bak
+*.swp
+*~
